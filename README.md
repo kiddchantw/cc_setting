@@ -11,7 +11,9 @@ cc_setting/
 │   └── laravel-expert.md          # Laravel 開發專家
 │
 ├── skills/                         # Skills - 按需調用的專項工具
+│   ├── flutter-openapi-generator/  # Flutter OpenAPI 客戶端生成
 │   ├── flutter-performance-review/ # Flutter 效能審查
+│   ├── flutter-platform-integration/ # Flutter 平台整合（iOS/Android）
 │   ├── flutter-security-review/    # Flutter 安全審查
 │   ├── git-commit-tw/              # 繁體中文 Git Commit 規範
 │   ├── laravel-performance-review/ # Laravel 效能審查
@@ -107,17 +109,16 @@ Skills 採用**按需載入**設計，只在特定情況下才會觸發，有效
 
 ### Flutter Skills
 
-#### 1. Flutter Security Review
-**觸發關鍵字**：`security`、`安全`、`authentication`、`權限`、`validate`
+#### 1. Flutter OpenAPI Generator
+**觸發關鍵字**：`openapi`、`swagger`、`API client`、`生成 API`
 
-**檢查項目**：
-- 輸入驗證與資料清理
-- 敏感資料儲存（flutter_secure_storage）
-- 認證與授權機制
-- 網路安全（HTTPS、certificate pinning）
-- 權限處理
-- Deep links 驗證
-- 依賴套件安全更新
+**功能**：
+- 自動偵測 OpenAPI/Swagger 規範檔案
+- 生成 type-safe 的 Dart API 客戶端
+- 整合 dio、retrofit、json_serializable
+- 提供完整的設定和使用範例
+- 環境配置（dev/staging/prod）
+- Token 自動刷新機制
 
 #### 2. Flutter Performance Review
 **觸發關鍵字**：`performance`、`效能`、`optimize`、`優化`、`lag`、`卡頓`、`memory leak`
@@ -131,9 +132,34 @@ Skills 採用**按需載入**設計，只在特定情況下才會觸發，有效
 - App bundle 大小優化
 - 動畫效能
 
+#### 3. Flutter Platform Integration
+**觸發關鍵字**：`platform`、`平台`、`iOS`、`Android`、`native`、`原生`、`Platform Channel`
+
+**功能**：
+- iOS/Android 平台配置（Info.plist、AndroidManifest.xml）
+- Platform Channels 實作（Method/Event Channels）
+- 原生程式碼整合（Swift、Kotlin、Objective-C、Java）
+- 權限處理完整流程
+- 雙平台 UI 適配（Material/Cupertino）
+- Build 和簽署配置
+- Deep Linking 設定
+- 平台特定問題排除
+
+#### 4. Flutter Security Review
+**觸發關鍵字**：`security`、`安全`、`authentication`、`權限`、`validate`
+
+**檢查項目**：
+- 輸入驗證與資料清理
+- 敏感資料儲存（flutter_secure_storage）
+- 認證與授權機制
+- 網路安全（HTTPS、certificate pinning）
+- 權限處理
+- Deep links 驗證
+- 依賴套件安全更新
+
 ### Laravel Skills
 
-#### 3. Laravel Security Review
+#### 5. Laravel Security Review
 **觸發關鍵字**：`security`、`安全`、`SQL injection`、`XSS`、`CSRF`、`authorization`
 
 **檢查項目**：
@@ -146,7 +172,7 @@ Skills 採用**按需載入**設計，只在特定情況下才會觸發，有效
 - API 安全
 - 檔案上傳安全
 
-#### 4. Laravel Performance Review
+#### 6. Laravel Performance Review
 **觸發關鍵字**：`performance`、`效能`、`N+1`、`optimize`、`優化`、`slow query`
 
 **優化項目**：
@@ -157,7 +183,7 @@ Skills 採用**按需載入**設計，只在特定情況下才會觸發，有效
 - 分頁與資料載入
 - Laravel Octane
 
-#### 5. Git Commit TW
+#### 7. Git Commit TW
 **觸發時機**：建立 Git commit 時
 
 **功能**：
@@ -196,8 +222,10 @@ Claude 會根據對話內容自動判斷並觸發：
 直接使用指令：
 
 ```bash
-/flutter-security-review
+/flutter-openapi-generator
 /flutter-performance-review
+/flutter-platform-integration
+/flutter-security-review
 /laravel-security-review
 /laravel-performance-review
 /git-commit-tw
