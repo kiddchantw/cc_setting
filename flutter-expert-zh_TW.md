@@ -367,6 +367,7 @@ Flutter Expert 在開始工作前會：
 - ✅ 查看 `pubspec.yaml` 依賴
 - ✅ 了解現有的狀態管理方案
 - ✅ 理解架構模式
+- ✅ **偵測 OpenAPI 規範**：如果發現 `openapi.yaml`、`openapi.json`、`swagger.yaml` 或 `swagger.json`，會建議使用 `flutter-openapi-generator` skill 自動產生 type-safe 的 API 客戶端程式碼
 
 ### 2️⃣ 狀態管理策略
 
@@ -679,6 +680,20 @@ class OptimizedItemWidget extends StatelessWidget {
 - 圖片載入優化
 ```
 
+### API 客戶端生成
+```
+你: "從 OpenAPI 規範生成 API 客戶端"
+→ 觸發 flutter-openapi-generator skill
+
+自動執行：
+- 偵測 openapi.yaml 或 swagger.json
+- 安裝必要套件（dio, retrofit, json_serializable）
+- 配置程式碼生成器
+- 執行程式碼生成
+- 建立 API 服務包裝器
+- 提供使用範例和最佳實踐
+```
+
 ---
 
 ## 💡 Flutter Expert vs 手動開發
@@ -739,6 +754,7 @@ Flutter Expert:
 ### 相關 Skills
 - **flutter-security-review** - 安全審查
 - **flutter-performance-review** - 效能優化
+- **flutter-openapi-generator** - API 客戶端生成
 
 ---
 
@@ -787,3 +803,4 @@ Flutter Expert:
 - Agent 定義：`agents/flutter-expert.md`
 - 安全審查 Skill：`skills/flutter-security-review/SKILL.md`
 - 效能優化 Skill：`skills/flutter-performance-review/SKILL.md`
+- API 客戶端生成 Skill：`skills/flutter-openapi-generator/SKILL.md`
