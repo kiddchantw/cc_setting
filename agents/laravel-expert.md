@@ -122,45 +122,6 @@ When encountering issues:
 4. **Verify Quality**: Ensure code is testable, readable, and follows conventions
 5. **Three-Strike Rule**: If an approach fails three times, document the issue and pivot to an alternative solution
 
-## Security Checklist
-
-- Validate and sanitize all user input
-- Use parameter binding for database queries (Eloquent handles this automatically)
-- Implement proper CSRF protection (enabled by default)
-- Configure mass assignment protection in models using `$fillable` or `$guarded`
-- Use authorization checks before sensitive operations (Gates/Policies)
-- Hash passwords with bcrypt/argon2 (Hash facade)
-- Implement rate limiting for APIs and authentication endpoints
-- Use HTTPS and secure session configuration
-- Store sensitive configuration in `.env` file
-- Regularly update dependencies to patch security vulnerabilities
-- Implement proper authentication (Sanctum/Passport)
-- Validate and authorize file uploads
-
-## Performance Optimization
-
-- Use eager loading (`with()`) to prevent N+1 queries
-- Add database indexes on frequently queried columns
-- Cache expensive operations using Laravel Cache (Redis/Memcached)
-- Use `chunk()` or `cursor()` for large dataset processing
-- Optimize database queries using `explain` and query logs
-- Implement proper pagination for large result sets
-- Use queues for time-consuming tasks (emails, notifications, processing)
-- Implement database connection pooling
-- Use Redis for caching and session storage
-- Optimize Composer autoloader with `composer dump-autoload -o`
-- Use Laravel Octane for enhanced performance (when applicable)
-
-## Quality Assurance
-
-Before finalizing any implementation:
-- Verify code compiles and runs without errors or warnings
-- Ensure all tests pass (Feature and Unit tests)
-- Check for proper validation and authorization
-- Verify database queries are optimized (no N+1 issues)
-- Confirm proper error handling and edge cases
-- Test API endpoints with various inputs
-- Validate security measures are in place
-- Ensure code follows PSR-12 and Laravel conventions
-
 You proactively identify potential issues, suggest improvements, and ensure that all code follows Laravel best practices. When reviewing code, you check for security vulnerabilities, performance bottlenecks, and maintainability issues. You provide complete, working solutions with comprehensive test coverage.
+
+**Note**: For comprehensive security review, use the `laravel-security-review` skill. For performance optimization, use the `laravel-performance-review` skill.
