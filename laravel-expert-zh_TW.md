@@ -2,7 +2,21 @@
 
 ## 🎯 這個 Agent 是什麼？
 
-**Laravel Expert** 是一個專門為 Laravel 後端開發設計的 AI 助手，擁有 10+ 年 Laravel 開發經驗，精通 Laravel 10/11 和 PHP 8.x。就像你身邊有一位資深的後端架構師，隨時協助你設計 API、優化查詢、撰寫測試。
+**Laravel Expert** 是一個專門為 Laravel 後端開發設計的 AI 助手，擁有 10+ 年 Laravel 開發經驗，精通 **Laravel 10/11/12** 和 **PHP 8.x/8.4**。就像你身邊有一位資深的後端架構師，隨時協助你設計 API、優化查詢、撰寫測試。
+
+### ⚡ 版本感知能力
+
+**Laravel Expert 會自動偵測專案的 Laravel 版本**，並提供對應版本的程式碼建議：
+
+- 🔍 **自動偵測**：檢查 `composer.json` 和 `bootstrap/app.php` 結構
+- 📊 **版本適配**：根據偵測到的版本（10/11/12）提供最合適的程式碼
+- 🚀 **升級建議**：如果有更好的新版本特性，會主動提醒並說明升級路徑
+- ⚠️ **版本標註**：使用新版本特性時會明確標示所需版本
+
+**支援版本**：
+- **Laravel 12** (最新) - Rate limiting 改進、Queue batching 增強、新驗證規則
+- **Laravel 11** - 精簡的 `bootstrap/app.php`、新目錄結構、per-second rate limiting
+- **Laravel 10** - Eager loading 改進、invokable validation rules、process isolation testing
 
 ---
 
@@ -14,6 +28,7 @@
 - ✅ Laravel 專案目錄結構
 - ✅ `composer.json` 包含 Laravel 依賴
 - ✅ 編輯 Laravel 相關檔案
+- ✅ 自動識別 Laravel 版本（10/11/12）
 
 ### 使用場景範例
 
@@ -39,11 +54,149 @@
 
 ---
 
+## 🔍 版本偵測與適配
+
+### 自動版本偵測流程
+
+Laravel Expert 會按以下順序偵測專案版本：
+
+#### 1️⃣ 檢查 `composer.json`
+```json
+{
+    "require": {
+        "laravel/framework": "^12.0"  // Laravel 12
+    }
+}
+```
+
+#### 2️⃣ 檢查 `bootstrap/app.php` 結構
+
+**Laravel 11/12（新結構）**：
+```php
+<?php
+
+use Illuminate\Foundation\Application;
+
+return Application::configure(basePath: dirname(__DIR__))
+    ->withRouting(
+        web: __DIR__.'/../routes/web.php',
+        api: __DIR__.'/../routes/api.php',
+        commands: __DIR__.'/../routes/console.php',
+    )
+    ->withMiddleware(function (Middleware $middleware) {
+        //
+    })
+    ->withExceptions(function (Exceptions $exceptions) {
+        //
+    })
+    ->create();
+```
+
+**Laravel 10 及更早（傳統結構）**：
+```php
+<?php
+
+$app = new Illuminate\Foundation\Application(
+    $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
+);
+
+$app->singleton(
+    Illuminate\Contracts\Http\Kernel::class,
+    App\Http\Kernel::class
+);
+
+return $app;
+```
+
+### 版本差異範例
+
+#### Rate Limiting
+
+**Laravel 12（最新）**：
+```php
+// 更彈性的 rate limiting
+use Illuminate\Support\Facades\RateLimiter;
+
+RateLimiter::for('api', function (Request $request) {
+    return Limit::perMinute(60)
+        ->by($request->user()?->id ?: $request->ip())
+        ->response(function (Request $request, array $headers) {
+            return response('Too many requests', 429, $headers);
+        });
+});
+```
+
+**Laravel 11**：
+```php
+// Per-second rate limiting
+RateLimiter::for('api', function (Request $request) {
+    return Limit::perSecond(1)->by($request->user()?->id ?: $request->ip());
+});
+```
+
+**Laravel 10**：
+```php
+// 傳統的 per-minute limiting
+RateLimiter::for('api', function (Request $request) {
+    return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
+});
+```
+
+#### Middleware 註冊
+
+**Laravel 11/12**：
+```php
+// bootstrap/app.php
+->withMiddleware(function (Middleware $middleware) {
+    $middleware->append(EnsureTokenIsValid::class);
+})
+```
+
+**Laravel 10**：
+```php
+// app/Http/Kernel.php
+protected $middleware = [
+    \App\Http\Middleware\EnsureTokenIsValid::class,
+];
+```
+
+#### 版本適配建議
+
+當 Laravel Expert 偵測到版本時，會提供對應建議：
+
+**範例：Laravel 10 專案**
+```php
+// Laravel Expert 會提供 Laravel 10 相容的程式碼
+RateLimiter::for('api', function (Request $request) {
+    return Limit::perMinute(60);
+});
+
+// 並提醒可用的升級路徑
+// 💡 提示: Laravel 11+ 支援 per-second rate limiting
+//    升級後可使用: Limit::perSecond(1)
+```
+
+**範例：Laravel 12 專案**
+```php
+// Laravel Expert 會使用最新特性
+RateLimiter::for('api', function (Request $request) {
+    return Limit::perMinute(60)
+        ->response(function (Request $request, array $headers) {
+            return response()->json([
+                'message' => 'Too many requests',
+                'retry_after' => $headers['Retry-After'],
+            ], 429, $headers);
+        });
+});
+```
+
+---
+
 ## 💪 核心能力
 
 ### 1. **Framework Mastery（框架精通）**
 
-#### Laravel 10/11 進階功能
+#### Laravel 10/11/12 進階功能
 ```php
 // Eloquent 進階：關聯與 Scopes
 class Post extends Model
