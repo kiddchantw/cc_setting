@@ -10,12 +10,54 @@ cc_setting/
 │   ├── flutter-expert.md          # Flutter 開發專家
 │   └── laravel-expert.md          # Laravel 開發專家
 │
-└── skills/                         # Skills - 按需調用的專項工具
-    ├── flutter-performance-review/ # Flutter 效能審查
-    ├── flutter-security-review/    # Flutter 安全審查
-    ├── git-commit-tw/              # 繁體中文 Git Commit 規範
-    ├── laravel-performance-review/ # Laravel 效能審查
-    └── laravel-security-review/    # Laravel 安全審查
+├── skills/                         # Skills - 按需調用的專項工具
+│   ├── flutter-performance-review/ # Flutter 效能審查
+│   ├── flutter-security-review/    # Flutter 安全審查
+│   ├── git-commit-tw/              # 繁體中文 Git Commit 規範
+│   ├── laravel-performance-review/ # Laravel 效能審查
+│   └── laravel-security-review/    # Laravel 安全審查
+│
+└── 📖 文件（供人類閱讀，不影響 token）
+    ├── README.md                   # 專案總覽
+    ├── flutter-expert-zh_TW.md    # Flutter Expert 繁中使用指南
+    └── laravel-expert-zh_TW.md    # Laravel Expert 繁中使用指南
+```
+
+## 📖 文件說明
+
+### 繁體中文使用指南
+
+為了幫助開發者更容易理解和使用 Agents，本專案提供了完整的繁體中文使用指南：
+
+- **[Flutter Expert 使用指南](flutter-expert-zh_TW.md)** - 789 行完整說明
+  - 核心能力詳解、程式碼範例、最佳實踐
+  - 登入畫面實作、效能優化範例
+
+- **[Laravel Expert 使用指南](laravel-expert-zh_TW.md)** - 1,054 行完整說明
+  - 架構設計、測試策略、N+1 查詢優化
+  - 完整的註冊 API 實作流程
+
+### ⚠️ 重要提醒
+
+**Token 消耗說明**：
+- ✅ Agent 定義檔（`agents/*.md`）- AI 載入使用，**會消耗 token**
+- ❌ 繁中指南（`*-zh_TW.md`）- 人類閱讀用，**不會消耗 token**
+- ❌ README.md - 專案說明文件，**不會消耗 token**
+
+**維護建議**：
+- 🔄 當修改 `agents/flutter-expert.md` 時，**建議同步更新** `flutter-expert-zh_TW.md`
+- 🔄 當修改 `agents/laravel-expert.md` 時，**建議同步更新** `laravel-expert-zh_TW.md`
+- 📝 繁中指南的目的是幫助團隊成員理解 Agent 的能力和使用方式
+- ⏱️ 定期檢查兩者是否同步，避免文件過時
+
+**檢查清單**：
+```markdown
+修改 Agent 後的同步檢查：
+□ agents/flutter-expert.md 有變更 → 更新 flutter-expert-zh_TW.md
+□ agents/laravel-expert.md 有變更 → 更新 laravel-expert-zh_TW.md
+□ 新增/移除 Skills → 更新 README.md 的 Skills 說明
+□ 驗證範例程式碼仍然有效
+□ 確認連結和參考資源正確
 ```
 
 ## 🤖 Agents 說明
