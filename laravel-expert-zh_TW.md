@@ -6,17 +6,17 @@
 
 ### ⚡ 版本感知能力
 
-**Laravel Expert 會自動偵測專案的 Laravel 版本**，並提供對應版本的程式碼建議：
+**Laravel Expert 會自動偵測專案的 Laravel 和 PHP 版本**，並提供對應版本的程式碼建議：
 
-- 🔍 **自動偵測**：檢查 `composer.json` 和 `bootstrap/app.php` 結構
+- 🔍 **自動偵測**：檢查 `composer.json` 的 Laravel 和 PHP 版本
 - 📊 **版本適配**：根據偵測到的版本（10/11/12）提供最合適的程式碼
 - 🚀 **升級建議**：如果有更好的新版本特性，會主動提醒並說明升級路徑
 - ⚠️ **版本標註**：使用新版本特性時會明確標示所需版本
 
 **支援版本**：
-- **Laravel 12** (最新) - Rate limiting 改進、Queue batching 增強、新驗證規則
-- **Laravel 11** - 精簡的 `bootstrap/app.php`、新目錄結構、per-second rate limiting
-- **Laravel 10** - Eager loading 改進、invokable validation rules、process isolation testing
+- **Laravel 12** (最新) - Rate limiting 改進、Queue batching 增強、新驗證規則 | **需要 PHP 8.2+**
+- **Laravel 11** - 精簡的 `bootstrap/app.php`、新目錄結構、per-second rate limiting | **需要 PHP 8.2+**
+- **Laravel 10** - Eager loading 改進、invokable validation rules、process isolation testing | **需要 PHP 8.1+**
 
 ---
 
@@ -106,6 +106,44 @@ $app->singleton(
 );
 
 return $app;
+```
+
+#### 3️⃣ 檢查 PHP 版本要求
+
+Laravel Expert 也會偵測 PHP 版本，確保使用適合的語言特性：
+
+**檢查 `composer.json`**：
+```json
+{
+    "require": {
+        "php": "^8.2"  // PHP 8.2+
+    }
+}
+```
+
+**PHP 版本與 Laravel 的對應關係**：
+- **Laravel 10** → 需要 PHP 8.1+ (可使用 Enums、Readonly Properties)
+- **Laravel 11/12** → 需要 PHP 8.2+ (可使用 Readonly Classes、DNF Types)
+
+**程式碼範例會標註版本要求**：
+```php
+// PHP 8.1+ 特性 - Enums
+enum Status: string
+{
+    case Active = 'active';
+    case Inactive = 'inactive';
+}
+// 註記: 需要 PHP 8.1+
+
+// PHP 8.2+ 特性 - Readonly Classes
+readonly class UserDTO
+{
+    public function __construct(
+        public string $name,
+        public string $email,
+    ) {}
+}
+// 註記: 需要 PHP 8.2+
 ```
 
 ### 版本差異範例
@@ -238,7 +276,7 @@ $posts = Post::published()
 
 #### PHP 8.x 現代特性
 ```php
-// Enums
+// Enums (需要 PHP 8.1+)
 enum PostStatus: string
 {
     case Draft = 'draft';
@@ -246,11 +284,11 @@ enum PostStatus: string
     case Archived = 'archived';
 }
 
-// Attributes
+// Attributes (需要 PHP 8.0+)
 #[Route('/posts', methods: ['GET', 'POST'])]
 class PostController extends Controller
 {
-    // Named Arguments
+    // Named Arguments (需要 PHP 8.0+)
     public function store(
         string $title,
         string $content,
@@ -260,10 +298,20 @@ class PostController extends Controller
     }
 }
 
-// Union Types
+// Union Types (需要 PHP 8.0+)
 function process(int|float|string $value): array|null
 {
     // ...
+}
+
+// Readonly Classes (需要 PHP 8.2+)
+readonly class CreatePostDTO
+{
+    public function __construct(
+        public string $title,
+        public string $content,
+        public PostStatus $status = PostStatus::Draft,
+    ) {}
 }
 ```
 
