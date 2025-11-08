@@ -368,6 +368,7 @@ Flutter Expert 在開始工作前會：
 - ✅ 了解現有的狀態管理方案
 - ✅ 理解架構模式
 - ✅ **偵測 OpenAPI 規範**：如果發現 `openapi.yaml`、`openapi.json`、`swagger.yaml` 或 `swagger.json`，會建議使用 `flutter-openapi-generator` skill 自動產生 type-safe 的 API 客戶端程式碼
+- ✅ **偵測平台整合需求**：如果需要操作 `ios/` 或 `android/` 目錄、平台特定配置（`Info.plist`、`AndroidManifest.xml`）、或實作 platform channels，會建議使用 `flutter-platform-integration` skill 取得原生程式碼整合指導
 
 ### 2️⃣ 狀態管理策略
 
@@ -694,6 +695,22 @@ class OptimizedItemWidget extends StatelessWidget {
 - 提供使用範例和最佳實踐
 ```
 
+### 平台整合
+```
+你: "新增 iOS 相機權限"
+你: "實作 Platform Channel 取得電量"
+你: "設定 Android 推播通知"
+→ 觸發 flutter-platform-integration skill
+
+自動提供：
+- iOS/Android 平台配置指導（Info.plist、AndroidManifest.xml）
+- Platform Channels 實作（Method/Event Channels）
+- 原生程式碼範例（Swift/Kotlin）
+- 權限處理完整流程
+- 雙平台 UI 適配策略
+- Build 和簽署配置
+```
+
 ---
 
 ## 💡 Flutter Expert vs 手動開發
@@ -755,6 +772,7 @@ Flutter Expert:
 - **flutter-security-review** - 安全審查
 - **flutter-performance-review** - 效能優化
 - **flutter-openapi-generator** - API 客戶端生成
+- **flutter-platform-integration** - 平台整合與原生程式碼
 
 ---
 
@@ -804,3 +822,4 @@ Flutter Expert:
 - 安全審查 Skill：`skills/flutter-security-review/SKILL.md`
 - 效能優化 Skill：`skills/flutter-performance-review/SKILL.md`
 - API 客戶端生成 Skill：`skills/flutter-openapi-generator/SKILL.md`
+- 平台整合 Skill：`skills/flutter-platform-integration/SKILL.md`
