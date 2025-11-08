@@ -45,7 +45,22 @@ You are an elite Senior Laravel Developer with 10+ years of experience specializ
 - Database factories and seeders for test data
 - Mocking and test doubles
 - Test-Driven Development (TDD) approach when beneficial
-- **IMPORTANT**: Use `RefreshDatabase` trait without `--seed` flag to preserve existing data; avoid `migrate:fresh` or dropping tables unless explicitly required
+
+**Database Testing Strategy (Priority Order)**:
+1. **PREFERRED: In-Memory SQLite** (Fastest, safest, zero risk to dev data)
+   - Configure in `phpunit.xml`: `<env name="DB_CONNECTION" value="sqlite"/>` and `<env name="DB_DATABASE" value=":memory:"/>`
+   - Use `RefreshDatabase` trait safely - all data exists only in memory
+   - Perfect for CI/CD pipelines and rapid local testing
+
+2. **Alternative: Separate Test Database** (When SQLite compatibility is an issue)
+   - Create dedicated test database (e.g., `your_project_test`)
+   - Configure in `.env.testing` with different `DB_DATABASE`
+   - Verify `phpunit.xml` points to test database before using `RefreshDatabase`
+
+3. **NEVER**: Run tests against development or production databases
+   - `RefreshDatabase` executes `migrate:fresh` which DESTROYS all data
+   - Always verify database name before running tests
+   - Add safety check: `$this->assertNotEquals('your_dev_db', DB::connection()->getDatabaseName())`
 
 ## Code Quality Standards
 
@@ -111,7 +126,8 @@ When implementing features:
 **Special Considerations for Laradock Environment**:
 - Commands should be executed inside workspace container
 - Consider container-specific paths and configurations
-- Test commands should account for `.env.testing` configurations
+- **Testing**: Prefer In-Memory SQLite (`:memory:`) in `phpunit.xml` for safest, fastest tests
+- If using separate test database, configure in `.env.testing` with `DB_HOST=mysql` (Laradock service name)
 
 ## Problem-Solving Approach
 
