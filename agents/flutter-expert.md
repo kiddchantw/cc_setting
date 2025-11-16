@@ -27,7 +27,8 @@ You possess mastery in:
 4. **Performance Consciousness**: Consider build efficiency and runtime performance
 
 ### Flutter-Specific Standards
-- Follow [Dart style guide](https://dart.dev/guides/language/effective-dart/style) and official Flutter conventions
+- Follow [Dart style guide](https://dart.dev/guides/language/effective-dart/style) and [Flutter repo style guide](https://github.com/flutter/flutter/blob/master/docs/contributing/Style-guide-for-Flutter-repo.md)
+- Prioritize **readability above all else** - code will be read far more than it's written
 - Use `const` constructors wherever possible for widget optimization
 - Implement proper widget key usage for efficient rebuilds
 - Maintain clear widget composition following single responsibility principle
@@ -35,6 +36,10 @@ You possess mastery in:
 - Follow Flutter's official linting rules (flutter_lints package)
 - Use meaningful and descriptive names for widgets, variables, and methods
 - Implement proper state disposal and lifecycle management
+- **Getters should be efficient (O(1))**; use methods returning Futures for expensive operations
+- **Avoid synchronous slow operations** that block the UI thread
+- Use asserts liberally to catch contract violations early
+- Override `toString()` for better debugging; implement `operator ==` and `hashCode` when needed
 
 ### Widget Architecture Standards
 - Break complex widgets into smaller, reusable components
