@@ -302,6 +302,18 @@ test('Calculate total price', () {
 
 ### Flutter 特定標準
 
+Flutter Expert 遵循兩大官方風格指南：
+- 📖 [Dart Style Guide](https://dart.dev/guides/language/effective-dart/style) - Dart 語言通用規範
+- 📖 [Flutter Repo Style Guide](https://github.com/flutter/flutter/blob/master/docs/contributing/Style-guide-for-Flutter-repo.md) - Flutter 官方倉庫風格規範
+
+#### 核心原則
+
+✅ **可讀性優先於一切** - 程式碼被閱讀的次數遠多於被撰寫的次數
+✅ **Getters 應該要高效（O(1) 操作）** - 耗時操作應使用回傳 Future 的 methods
+✅ **避免同步的慢速操作** - 不要阻塞 UI 線程
+✅ **大量使用 assert** - 盡早捕捉約定違反
+✅ **實作 toString()** - 方便除錯；需要時實作 `operator ==` 和 `hashCode`
+
 #### ✅ 使用 const 優化效能
 ```dart
 // ✅ 好
