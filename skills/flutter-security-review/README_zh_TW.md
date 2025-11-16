@@ -530,4 +530,4 @@ android {
 **相關檔案**：
 - Skill 定義：`skills/flutter-security-review/SKILL.md`
 - Agent 定義：`agents/flutter-expert.md`
-- Flutter Expert 繁中指南：`flutter-expert-zh_TW.md`
+- Flutter Expert 繁中指南：`README_flutter-expert_zh_TW.md`
