@@ -12,28 +12,23 @@
 
 ---
 
-## 🚀 自動觸發條件
+## 🚀 觸發指令
 
-這個 skill 會在以下情況**自動啟動**：
+### 精準觸發
+- `@laravel-security-review`
+- `使用 laravel-security-review`
 
-### 使用者請求安全審查
+### 語義觸發
 - "檢查 Laravel 安全性"
 - "審查 API"
 - "驗證授權"
-- "check Laravel security"
-- "audit this API"
-- "is this endpoint secure?"
-- "review authorization"
-- "check for vulnerabilities"
+- "檢查 SQL 注入"
+- "審查 CSRF 保護"
 
-### 關鍵場景
-- 審查程式碼安全問題
-- 審核 API 端點或控制器
-- 驗證認證或授權邏輯
-- 檢查驗證和輸入處理
-- 評估 CSRF 保護
-- 部署前安全評估
-- 一般性安全程式碼審查
+### 自動觸發
+- 偵測到 Raw SQL 查詢
+- 偵測到未驗證的輸入
+- 偵測到敏感資料暴露
 
 ---
 

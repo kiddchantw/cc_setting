@@ -12,28 +12,23 @@
 
 ---
 
-## 🚀 自動觸發條件
+## 🚀 觸發指令
 
-這個 skill 會在以下情況**自動啟動**：
+### 精準觸發
+- `@laravel-performance-review`
+- `使用 laravel-performance-review`
 
-### 效能問題症狀
-- API 回應時間慢
-- 資料庫查詢沒效率
-- 偵測到 N+1 query 問題
-- 伺服器負載或 CPU 使用率高
-- 記憶體消耗問題
-- 頁面載入時間慢
-- 使用者回報應用程式慢
-
-### 使用者請求
+### 語義觸發
 - "優化這個查詢"
 - "修復 N+1 問題"
 - "API 很慢"
-- "improve performance"
-- "check database indexes"
-- "optimize Laravel"
-- "優化查詢"
-- "效能瓶頸"
+- "Laravel 效能優化"
+- "檢查資料庫索引"
+
+### 自動觸發
+- 偵測到 N+1 Query
+- 偵測到緩慢的資料庫查詢
+- 偵測到高記憶體消耗
 
 ---
 
