@@ -6,7 +6,7 @@ model: claude-3-5-haiku
 
 # TDD Workflow
 
-> **📖 詳細中文說明**: `docs_claude/skills/tdd-workflow/README_zh_TW.md`
+> **📖 詳細中文說明**: `README_zh_TW.md`
 > 
 > **🎯 適用框架**: Laravel (Pest) | Flutter (Dart)
 

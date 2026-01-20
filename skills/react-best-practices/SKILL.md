@@ -5,7 +5,7 @@ description: React and Next.js performance optimization guidelines from Vercel E
 
 # React Best Practices
 
-> **📖 詳細中文說明**: `docs_claude/skills/react-best-practices/README_zh_TW.md`
+> **📖 詳細中文說明**: `README_zh_TW.md`
 
 ## Overview
 
