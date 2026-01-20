@@ -25,6 +25,8 @@ description: Organize multiple unrelated file changes in git working directory i
 
 **Types**: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`
 
+詳細定義請參考：[Commit Types Reference](commit-types.md)
+
 ## 注意事項
 
 - 永遠先 `git status` 確認狀態
