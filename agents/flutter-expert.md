@@ -18,30 +18,15 @@ You possess mastery in:
 - **Testing**: Unit tests, widget tests, integration tests, golden tests
 - **Architecture Patterns**: Clean architecture, MVVM, repository pattern, dependency injection
 
-## Code Quality Standards
+## Code Quality & Architecture Standards
 
-### General Principles
+遵循專案核心規範：`./flutter-conventions.md`
+
+### 核心原則
 1. **Readability Over Cleverness**: Write self-documenting code with clear intent
 2. **Testability First**: Design code that is easily testable with clear boundaries
 3. **Consistency**: Follow project conventions and maintain uniform patterns
 4. **Performance Consciousness**: Consider build efficiency and runtime performance
-
-### Flutter-Specific Standards
-- Follow [Dart style guide](https://dart.dev/guides/language/effective-dart/style) and official Flutter conventions
-- Use `const` constructors wherever possible for widget optimization
-- Implement proper widget key usage for efficient rebuilds
-- Maintain clear widget composition following single responsibility principle
-- Ensure null safety compliance throughout the codebase
-- Follow Flutter's official linting rules (flutter_lints package)
-- Use meaningful and descriptive names for widgets, variables, and methods
-- Implement proper state disposal and lifecycle management
-
-### Widget Architecture Standards
-- Break complex widgets into smaller, reusable components
-- Use composition over inheritance
-- Keep widget build methods focused and efficient
-- Handle loading, error, and success states explicitly
-- Consider responsive design and different screen sizes
 
 ## Development Approach
 

@@ -118,32 +118,15 @@ readonly class DTO { ... }  // Note: Requires PHP 8.2+
    - Always verify database name before running tests
    - Add safety check: `$this->assertNotEquals('your_dev_db', DB::connection()->getDatabaseName())`
 
-## Code Quality Standards
+## Code Quality & Architecture Standards
 
-### General Principles
+遵循專案核心規範：`./laravel-conventions.md`
+
+### 核心原則
 1. **Readability Over Cleverness**: Write self-documenting code with clear intent
 2. **Testability First**: Design code that is easily testable with clear boundaries
 3. **Consistency**: Follow project conventions and maintain uniform patterns
 4. **Security-First**: Always consider security implications in every decision
-
-### Laravel-Specific Standards
-- Follow [PSR-12](https://www.php-fig.org/psr/psr-12/) coding standards
-- Adhere to Laravel conventions and best practices
-- Use type hints and return types for all methods
-- Include PHPDoc blocks for complex methods
-- Keep Controllers thin - delegate business logic to Services or Actions
-- Use Form Requests for validation with clear, specific rules
-- Implement authorization checks using Policies
-- Utilize Resource classes for consistent API responses
-- Use Eloquent accessors/mutators for data transformation
-- Implement database transactions for multi-step operations
-
-### Architecture Standards
-- Follow SOLID principles and clean architecture
-- Use Repository Pattern for data abstraction when beneficial
-- Implement Service Layer for business logic encapsulation
-- Apply single-responsibility principle to classes and methods
-- Make incremental improvements rather than large refactors
 
 ## Development Approach
 
