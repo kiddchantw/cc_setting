@@ -11,20 +11,21 @@
 
 ---
 
-## 🚀 自動觸發條件
+## 🚀 觸發指令
 
-這個 skill 會在以下情況**自動啟動**：
+### 精準觸發
+- `@flutter-openapi-generator`
+- `使用 flutter-openapi-generator`
 
-### 偵測到 API 規範檔案
-- ✅ 發現 `openapi.yaml`
-- ✅ 發現 `openapi.json`
-- ✅ 發現 `swagger.yaml`
-- ✅ 發現 `swagger.json`
-
-### 使用者明確請求
+### 語義觸發
 - "幫我從 OpenAPI 生成 API 客戶端"
 - "整合這個 REST API"
 - "設定 API 程式碼生成"
+- "OpenAPI 轉 Dart"
+
+### 自動觸發
+- 偵測到 `openapi.yaml`, `openapi.json`
+- 偵測到 `swagger.yaml`, `swagger.json`
 
 ---
 

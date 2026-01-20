@@ -12,29 +12,22 @@
 
 ---
 
-## 🚀 自動觸發條件
+## 🚀 觸發指令
 
-這個 skill 會在以下情況**自動啟動**：
+### 精準觸發
+- `@flutter-platform-integration`
+- `使用 flutter-platform-integration`
 
-### 平台特定需求
+### 語義觸發
 - "新增 iOS 權限"
 - "設定 AndroidManifest"
 - "實作 Platform Channel"
 - "整合原生程式碼"
 - "雙平台 UI 適配"
-- "add iOS permission"
-- "implement platform channel"
-- "configure Android"
 
-### 使用場景
-- 實作 Method/Event Channels
-- 配置平台特定設定（Info.plist、AndroidManifest.xml）
-- 整合原生程式碼（Swift、Kotlin、Objective-C、Java）
-- 設定平台權限和功能
-- 處理平台特定功能（相機、位置、通知等）
-- 適配 iOS 和 Android UI 設計語言
-- 排除平台 build 或部署問題
-- 建立 Flutter plugins
+### 自動觸發
+- 偵測到平台特定檔案修改 (`Info.plist`, `AndroidManifest.xml`)
+- 偵測到原生代碼 (`.swift`, `.kt`, `.java`, `.m`)
 
 ---
 

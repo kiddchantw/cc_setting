@@ -12,26 +12,23 @@
 
 ---
 
-## 🚀 自動觸發條件
+## 🚀 觸發指令
 
-這個 skill 會在以下情況**自動啟動**：
+### 精準觸發
+- `@flutter-security-review`
+- `使用 flutter-security-review`
 
-### 使用者請求安全審查
+### 語義觸發
 - "檢查這段程式碼的安全性"
 - "審查權限處理"
 - "驗證資料保護"
-- "check Flutter security"
-- "review authentication logic"
-- "is this secure?"
-- "audit API calls"
+- "檢查 Flutter 安全漏洞"
+- "審查認證邏輯"
 
-### 關鍵場景
-- 審查認證或授權邏輯
-- 驗證資料保護機制
-- 檢查權限處理
-- 驗證 API 安全性
-- 部署前安全評估
-- 一般性程式碼安全審查
+### 自動觸發
+- 偵測到敏感資料處理（Token, Password）
+- 偵測到不安全的網路請求（HTTP）
+- 偵測到硬編碼的金鑰
 
 ---
 

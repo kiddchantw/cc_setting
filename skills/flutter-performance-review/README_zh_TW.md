@@ -12,28 +12,22 @@
 
 ---
 
-## 🚀 自動觸發條件
+## 🚀 觸發指令
 
-這個 skill 會在以下情況**自動啟動**：
+### 精準觸發
+- `@flutter-performance-review`
+- `使用 flutter-performance-review`
 
-### 效能問題症狀
-- App 執行緩慢或卡頓
-- UI 在滾動或動畫時掉幀（jank）
-- 記憶體消耗過高
-- Widget 過度重建
-- 啟動時間過長
-- App bundle 大小過大
-- 幀率低於 60fps
-
-### 使用者請求
+### 語義觸發
 - "優化這個 widget"
 - "為什麼會卡頓？"
 - "減少 rebuilds"
-- "improve performance"
-- "memory leak check"
-- "app is slow"
-- "優化效能"
-- "記憶體洩漏"
+- "檢查記憶體洩漏"
+- "優化 Flutter 效能"
+
+### 自動觸發
+- 偵測到效能問題症狀（卡頓、掉幀）
+- 偵測到 `RepaintBoundary` 或 `const` 缺失等明顯問題
 
 ---
 
