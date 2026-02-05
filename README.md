@@ -139,13 +139,13 @@ flowchart TD
     Test -->|否| Fix["修正程式碼"]
     Fix --> TDD
 
-    Test -->|是| Security["@laravel-security-review"]
+    Test -->|是| Security["/laravel_security-review"]
     Security --> SecOK{"安全檢查通過?"}
 
     SecOK -->|否| FixSec["修正安全問題"]
     FixSec --> Security
 
-    SecOK -->|是| Commit["@git-organize-commits"]
+    SecOK -->|是| Commit["/git_organize-commits"]
     Commit --> End(["完成"])
 ```
 

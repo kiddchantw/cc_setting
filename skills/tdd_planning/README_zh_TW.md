@@ -515,7 +515,7 @@ class UserTest extends TestCase
 
 ## 相關資源
 
-- `@tdd-workflow`: TDD 執行流程（Red-Green-Refactor）
-- `.claude/skills/test-planning/SKILL.md`: Test Planning 精簡指令
-- `.claude/skills/tdd-workflow/SKILL.md`: TDD Workflow 精簡指令
+- `@tdd_workflow`: TDD 執行流程（Red-Green-Refactor）
+- `.claude/skills/tdd_planning/SKILL.md`: Test Planning 精簡指令
+- `.claude/skills/tdd_workflow/SKILL.md`: TDD Workflow 精簡指令
 

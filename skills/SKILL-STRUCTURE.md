@@ -134,7 +134,7 @@ touch .claude/skills/my-skill/SKILL.md
 ```
 
 ### 常用模式 C：連動其他 Skill
-在指令中明確提示：`「若檢測到安全性需求，請主動呼叫 @laravel-security-review。」`
+在指令中明確提示：`「若檢測到安全性需求，請主動呼叫 /laravel_security-review。」`
 
 ---
 

@@ -11,8 +11,8 @@
 ## 🚀 觸發指令
 
 ### 精準觸發
-- `@git-organize-commits`
-- `使用 git-organize-commits`
+- `/git_organize-commits`
+- `使用 git_organize-commits`
 
 ### 語義觸發
 - "整理 git commit"

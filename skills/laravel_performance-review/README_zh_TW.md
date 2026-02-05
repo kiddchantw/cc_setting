@@ -15,8 +15,8 @@
 ## 🚀 觸發指令
 
 ### 精準觸發
-- `@laravel-performance-review`
-- `使用 laravel-performance-review`
+- `/laravel_performance-review`
+- `使用 laravel_performance-review`
 
 ### 語義觸發
 - "優化這個查詢"
@@ -777,5 +777,5 @@ public function test_no_n_plus_one_queries()
 ---
 
 **相關檔案**：
-- Skill 定義：`skills/laravel-performance-review/SKILL.md`
+- Skill 定義：`skills/laravel_performance-review/SKILL.md`
 - Agent 定義：`agents/laravel-expert.md`（如果有）

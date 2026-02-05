@@ -15,8 +15,8 @@
 ## 🚀 觸發指令
 
 ### 精準觸發
-- `@flutter-performance-review`
-- `使用 flutter-performance-review`
+- `/flutter_performance-review`
+- `使用 flutter_performance-review`
 
 ### 語義觸發
 - "優化這個 widget"
@@ -786,6 +786,6 @@ void measureBuildTime(Widget widget) {
 ---
 
 **相關檔案**：
-- Skill 定義：`skills/flutter-performance-review/SKILL.md`
+- Skill 定義：`skills/flutter_performance-review/SKILL.md`
 - Agent 定義：`agents/flutter-expert.md`
 - Flutter Expert 繁中指南：`flutter-expert-zh_TW.md`

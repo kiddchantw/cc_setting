@@ -14,8 +14,8 @@
 ## 🚀 觸發指令
 
 ### 精準觸發
-- `@flutter-openapi-generator`
-- `使用 flutter-openapi-generator`
+- `/flutter_openapi-generator`
+- `使用 flutter_openapi-generator`
 
 ### 語義觸發
 - "幫我從 OpenAPI 生成 API 客戶端"
@@ -681,5 +681,5 @@ class _UsersScreenState extends State<UsersScreen> {
 ---
 
 **相關檔案**：
-- Skill 定義：`skills/flutter-openapi-generator/SKILL.md`
+- Skill 定義：`skills/flutter_openapi-generator/SKILL.md`
 - Agent 定義：`agents/flutter-expert.md`

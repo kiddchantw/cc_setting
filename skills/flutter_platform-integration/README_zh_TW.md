@@ -15,8 +15,8 @@
 ## 🚀 觸發指令
 
 ### 精準觸發
-- `@flutter-platform-integration`
-- `使用 flutter-platform-integration`
+- `/flutter_platform-integration`
+- `使用 flutter_platform-integration`
 
 ### 語義觸發
 - "新增 iOS 權限"
@@ -852,6 +852,6 @@ cd android
 ---
 
 **相關檔案**：
-- Skill 定義：`skills/flutter-platform-integration/SKILL.md`
+- Skill 定義：`skills/flutter_platform-integration/SKILL.md`
 - Agent 定義：`agents/flutter-expert.md`
 - Flutter Expert 繁中指南：`flutter-expert-zh_TW.md`

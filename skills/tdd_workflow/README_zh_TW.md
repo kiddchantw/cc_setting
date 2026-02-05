@@ -425,6 +425,6 @@ testWidgets('測試1', (tester) async { ... });
 
 ## 相關資源
 
-- `@test-planning`: 測試規劃與架構設計
-- `.claude/skills/test-planning/SKILL.md`: Test Planning 精簡指令
-- `.claude/skills/tdd-workflow/SKILL.md`: TDD Workflow 精簡指令
+- `@tdd_planning`: 測試規劃與架構設計
+- `.claude/skills/tdd_planning/SKILL.md`: Test Planning 精簡指令
+- `.claude/skills/tdd_workflow/SKILL.md`: TDD Workflow 精簡指令

@@ -11,8 +11,8 @@ https://github.com/vercel-labs/agent-skills/blob/react-best-practices/skills/rea
 ## 🚀 觸發指令
 
 ### 精準觸發
-- `@react-best-practices`
-- `使用 react-best-practices`
+- `/frontend_react-best-practices`
+- `使用 frontend_react-best-practices`
 
 ### 語義觸發
 - "React 最佳實踐"

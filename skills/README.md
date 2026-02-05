@@ -7,10 +7,10 @@
 ## 🎯 快速開始
 
 ### 1. 使用現有 Skills
-在對話中使用 `@skill-name` 標記即可呼叫特定工作流：
-- `@create-session`: 建立新的開發 session
-- `@tdd-workflow`: 啟動 TDD 開發流程
-- `@git-organize-commits`: 整理並優化 Git Commit 訊息
+在對話中使用 `/skill-name` 格式呼叫特定工作流：
+- `/create_session`: 建立新的開發 session
+- `/tdd_workflow`: 啟動 TDD 開發流程
+- `/git_organize-commits`: 整理並優化 Git Commit 訊息
 
 ### 2. 理解 Token 消耗 (按需載入)
 Skills 採用「延遲載入」設計以節省成本。
@@ -64,26 +64,26 @@ Skills 採用「延遲載入」設計以節省成本。
 
 | 類別 | 用途 | Skill 呼叫方法 | 資源參照 |
 | :--- | :--- | :--- | :--- |
-| **開發流程** | 🆕 建立新的開發 Session | `@create-session` | `agent-scripts/` |
-| | 🧪 Red-Green-Refactor TDD 循環 | `@tdd-workflow` | `agents/laravel-expert.md` |
-| | 📝 測試規劃與設計 | `@test-planning` | - |
-| **Git 管理** | 📋 整理變更並撰寫 Conventional Commits | `@git-organize-commits` | `agents/git-commit-tw.md` |
-| | 📝 從 Session 更新 CHANGELOG 並推進版本號 | `@update-changelog` | - |
-| **程式碼審查** | 🔒 Laravel 安全性審查 | `@laravel-security-review` | `agents/laravel-reviewer.md` |
-| | ⚡ Laravel 效能審查 | `@laravel-performance-review` | `agents/laravel-reviewer.md` |
-| | 🔒 Flutter 安全性審查 | `@flutter-security-review` | - |
-| | ⚡ Flutter 效能審查 | `@flutter-performance-review` | - |
-| **工具整合** | 🔄 Flutter OpenAPI Client 生成 | `@flutter-openapi-generator` | - |
-| | 📱 Flutter 平台整合 | `@flutter-platform-integration` | - |
-| | ⚛️ React/Next.js 優化指南 | `@react-best-practices` | - |
+| **開發流程** | 🆕 建立新的開發 Session | `/create_session` | `agent-scripts/` |
+| | 🧪 Red-Green-Refactor TDD 循環 | `/tdd_workflow` | `agents/laravel-expert.md` |
+| | 📝 測試規劃與設計 | `/tdd_planning` | - |
+| **Git 管理** | 📋 整理變更並撰寫 Conventional Commits | `/git_organize-commits` | `agents/git-commit-tw.md` |
+| | 📝 從 Session 更新 CHANGELOG 並推進版本號 | `/update-changelog` | - |
+| **程式碼審查** | 🔒 Laravel 安全性審查 | `/laravel_security-review` | `agents/laravel-reviewer.md` |
+| | ⚡ Laravel 效能審查 | `/laravel_performance-review` | `agents/laravel-reviewer.md` |
+| | 🔒 Flutter 安全性審查 | `/flutter_security-review` | - |
+| | ⚡ Flutter 效能審查 | `/flutter_performance-review` | - |
+| **工具整合** | 🔄 Flutter OpenAPI Client 生成 | `/flutter_openapi-generator` | - |
+| | 📱 Flutter 平台整合 | `/flutter_platform-integration` | - |
+| | ⚛️ React/Next.js 優化指南 | `/frontend_react-best-practices` | - |
 | **Obsidian 筆記庫** | Vault 路徑定義於全域 `~/.claude/CLAUDE.md` 的 `Personal Knowledge Base` 區段 | | |
-| | 📝 新增 Zettelkasten 知識卡片 | `@obsidian-add-cards` | `frontmatter-schema.md` |
-| | 📓 輕量隨記（靈感、備忘、踩坑） | `@obsidian-add-devlog` | `frontmatter-schema.md` |
-| | 📋 新增專案 Session 紀錄 | `@obsidian-add-projects-session` | `frontmatter-schema.md` |
-| | 🔎 從筆記庫搜尋過往紀錄 | `@obsidian-dev-lookup` | - |
-| | ✏️ 為筆記補上結論 / 解法 | `@obsidian-add-conclusion` | `frontmatter-schema.md` |
-| | 🧹 補齊 Frontmatter 欄位 | `@obsidian-enrich-frontmatter` | `frontmatter-schema.md` |
-| | 📦 搬移已完成的 Inbox 筆記 | `@obsidian-move-inbox` | - |
+| | 📝 新增 Zettelkasten 知識卡片 | `/obsidian-add-cards` | `frontmatter-schema.md` |
+| | 📓 輕量隨記（靈感、備忘、踩坑） | `/obsidian-add-devlog` | `frontmatter-schema.md` |
+| | 📋 新增專案 Session 紀錄 | `/obsidian-add-projects-session` | `frontmatter-schema.md` |
+| | 🔎 從筆記庫搜尋過往紀錄 | `/obsidian-dev-lookup` | - |
+| | ✏️ 為筆記補上結論 / 解法 | `/obsidian-add-conclusion` | `frontmatter-schema.md` |
+| | 🧹 補齊 Frontmatter 欄位 | `/obsidian-enrich-frontmatter` | `frontmatter-schema.md` |
+| | 📦 搬移已完成的 Inbox 筆記 | `/obsidian-move-inbox` | - |
 
 ---
 

@@ -15,8 +15,8 @@
 ## 🚀 觸發指令
 
 ### 精準觸發
-- `@flutter-security-review`
-- `使用 flutter-security-review`
+- `/flutter_security-review`
+- `使用 flutter_security-review`
 
 ### 語義觸發
 - "檢查這段程式碼的安全性"
@@ -525,6 +525,6 @@ android {
 ---
 
 **相關檔案**：
-- Skill 定義：`skills/flutter-security-review/SKILL.md`
+- Skill 定義：`skills/flutter_security-review/SKILL.md`
 - Agent 定義：`agents/flutter-expert.md`
 - Flutter Expert 繁中指南：`flutter-expert-zh_TW.md`

@@ -15,8 +15,8 @@
 ## 🚀 觸發指令
 
 ### 精準觸發
-- `@laravel-security-review`
-- `使用 laravel-security-review`
+- `/laravel_security-review`
+- `使用 laravel_security-review`
 
 ### 語義觸發
 - "檢查 Laravel 安全性"
@@ -680,5 +680,5 @@ public function handle($request, Closure $next)
 ---
 
 **相關檔案**：
-- Skill 定義：`skills/laravel-security-review/SKILL.md`
+- Skill 定義：`skills/laravel_security-review/SKILL.md`
 - Agent 定義：`agents/laravel-expert.md`（如果有）
