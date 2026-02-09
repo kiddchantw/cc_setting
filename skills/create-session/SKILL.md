@@ -24,6 +24,13 @@ bash ../../agent-scripts/create-session.sh
 
 ### 2. 填寫 Session 內容
 
+**⚠️ 重要規則 (Critical Rules)**：
+1. **語言**: 內文必須使用 **繁體中文 (Traditional Chinese)** 撰寫。
+2. **標題**: 
+   - Level 1-2 (`#`, `##`) 保持模板的英文。
+   - Level 3+ (`###`) 推薦使用 **中英對照** (例如: `### Approach Analysis (方案分析)`)。
+3. **格式**: 必須保留模板中的 Metadata 區塊。
+
 使用模板填寫以下區塊：
 
 #### Metadata
