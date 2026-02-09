@@ -10,7 +10,9 @@ description: Organize multiple unrelated file changes in git working directory i
 ## 工作流程
 
 1. **分析變更**：使用 `git status` 和 `git diff` 分析所有變更
-2. **識別群組**：根據檔名和內容識別邏輯群組（feat/fix/docs/perf/chore 等）
+2. **識別群組**：根據 **目錄相依性 (Directory Affinity)** 和內容識別邏輯群組
+    - 優先將 **同一資料夾內** 的新增與修改視為同一組變更
+    - 檢查是否有漏掉同目錄下的 Untracked files (`git add` 新增的檔案)
 3. **提出計畫**：列出群組及每個 commit 包含的檔案，等待確認
 4. **分步執行**：逐一處理每個群組
 5. **精準暫存**：只將該群組相關檔案加入 stage
