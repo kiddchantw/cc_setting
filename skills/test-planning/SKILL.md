@@ -48,10 +48,49 @@ Universal test planning workflow using SOLID principles. Works for both backend 
 
 ## Output
 
-- [ ] Test case checklist (Markdown)
-- [ ] Architecture design (optional)
-- [ ] Mock/Stub strategy
-- [ ] Priority order
+**重要規則**:
+1. **不要建立新的獨立檔案** - 測試計劃應直接寫入當前正在處理的 Session 文件
+2. **動態識別 Session 文件** - 根據用戶當前打開或引用的 session 文件來添加測試計劃
+3. **更新現有的 Testing Phase** - 在 Session 文件中找到 `Phase X: Testing` 區塊並更新，如果不存在則新增
+
+**實作方式**:
+- 檢查用戶當前打開的文件或引用的 session 文件
+- 在該文件的 `Phase X: Testing` 區塊中添加測試計劃內容
+- 如果沒有 Testing Phase，在 Implementation Checklist 區塊中新增一個
+
+**輸出內容** (直接寫入 Session 文件):
+
+- [ ] Test case checklist (Markdown) - 寫入 Session 文件的 Testing Phase
+- [ ] Architecture design (optional) - 寫入 Session 文件的 Testing Phase
+- [ ] Mock/Stub strategy - 寫入 Session 文件的 Testing Phase
+- [ ] Priority order - 寫入 Session 文件的 Testing Phase
+
+**格式範例** (添加到當前 Session 文件):
+```markdown
+### Phase X: Testing [📋 Test Planning Completed]
+
+#### Test Planning (測試規劃)
+
+##### 1. 需求分析 (Requirements Analysis)
+...
+
+##### 2. 測試案例拆解 (SOLID-driven Test Cases)
+...
+
+##### 3. 測試場景 (Test Scenarios)
+...
+
+##### 4. 架構設計 (Architecture Design)
+...
+
+##### 5. 測試優先順序 (Priority Order)
+...
+```
+
+**注意**: 
+- 不要建立 `*-test-plan.md` 之類的新檔案
+- 不要寫死特定 session 文件路徑
+- 根據用戶當前上下文動態識別要更新的 session 文件
 
 ## Laravel Testing Database
 

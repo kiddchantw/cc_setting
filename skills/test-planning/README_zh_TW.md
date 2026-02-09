@@ -300,13 +300,28 @@ class MockAuthService extends Mock implements AuthService {}
 
 ## 輸出物
 
-完成測試規劃後應產出：
+**重要規則**:
+1. **不要建立新的獨立檔案** - 測試計劃應直接寫入當前正在處理的 Session 文件
+2. **動態識別 Session 文件** - 根據用戶當前打開或引用的 session 文件來添加測試計劃
+3. **更新現有的 Testing Phase** - 在 Session 文件中找到 `Phase X: Testing` 區塊並更新，如果不存在則新增
+
+**實作方式**:
+- 檢查用戶當前打開的文件或引用的 session 文件
+- 在該文件的 `Phase X: Testing` 區塊中添加測試計劃內容
+- 如果沒有 Testing Phase，在 Implementation Checklist 區塊中新增一個
+
+完成測試規劃後應在 Session 文件的 `Phase X: Testing` 區塊中產出：
 
 ### 1. 測試案例清單（Markdown Checklist）
 ```markdown
-## Feature: XXX
+### Phase X: Testing [📋 Test Planning Completed]
 
-### 測試案例
+#### Test Planning (測試規劃)
+
+##### 1. 需求分析 (Requirements Analysis)
+...
+
+##### 2. 測試案例拆解 (SOLID-driven Test Cases)
 - [ ] 測試案例 1
 - [ ] 測試案例 2
 - [ ] 測試案例 3
@@ -315,14 +330,24 @@ class MockAuthService extends Mock implements AuthService {}
 ### 2. 架構設計圖（可選）
 - 類別圖（Class Diagram）
 - 依賴關係圖（Dependency Graph）
+- 直接寫入 Session 文件的 Architecture Design 區塊
 
 ### 3. Mock/Stub 策略
 - 列出需要 Mock 的介面
 - 定義 Mock 行為
+- 直接寫入 Session 文件的 Dependency Inversion 區塊
 
 ### 4. 測試優先順序
 - 標記高優先順序測試
 - 排序執行順序
+- 直接寫入 Session 文件的 Priority Order 區塊
+
+**注意事項**:
+- ❌ 不要建立 `*-test-plan.md` 之類的新檔案
+- ❌ 不要寫死特定 session 文件路徑（如 `04-activity-log-widget.md`）
+- ✅ 根據用戶當前上下文動態識別要更新的 session 文件
+- ✅ 如果用戶明確引用某個 session 文件（如 `@session-file.md`），則更新該文件
+- ✅ 如果用戶沒有明確引用，檢查當前打開的文件或最近查看的 session 文件
 
 ---
 
