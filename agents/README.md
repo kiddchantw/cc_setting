@@ -145,9 +145,14 @@ Agent 會在需要時引導或參考這些文件，而非在每次對話中重�
 
 除了單一 Agent，我們也支援 **Agent Teams** (多代理團隊) 協作模式。
 
-- **定義文件**: `../team-templates.md`
-- **用途**: 透過複製模板建立多個獨立的 Claude 實例進行協作 (如：全端開發 Team、規格審查 Team)。
-- **差異**: Team 成員擁有獨立 Context，適合複雜任務；單一 Agent 共享 Context，適合快速任務。
+- **完整指南**: [agent-teams-guide.md](agent-teams-guide.md) - 從環境設定、Team 建立、Task 管理到團隊關閉的完整流程
+- **用途**: 建立多個獨立的 Claude 實例進行協作（如：全端開發 Team、規格審查 Team、Code Review Team）
+- **差異**: Team 成員擁有獨立 Context，適合複雜任務；單一 Agent 共享 Context，適合快速任務
+- **快速開始**:
+  1. 在 `settings.local.json` 設定 `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`
+  2. 開啟 [agent-teams-guide.md](agent-teams-guide.md) 複製 Team 模板
+  3. 貼到 Claude Code 並客製化
+  4. 開始協作！
 
 ---
 
