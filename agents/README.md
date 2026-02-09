@@ -141,6 +141,16 @@ Agent 會在需要時引導或參考這些文件，而非在每次對話中重�
 - `.claude/skills/` - 可執行的工作流程
 - `.claude/agents/` - AI 專家角色定義
 
+### Agent Teams (實驗功能)
+
+除了單一 Agent，我們也支援 **Agent Teams** (多代理團隊) 協作模式。
+
+- **定義文件**: `../team-templates.md`
+- **用途**: 透過複製模板建立多個獨立的 Claude 實例進行協作 (如：全端開發 Team、規格審查 Team)。
+- **差異**: Team 成員擁有獨立 Context，適合複雜任務；單一 Agent 共享 Context，適合快速任務。
+
+---
+
 ### 本目錄相關文件
 
 - [AGENT-STRUCTURE.md](AGENT-STRUCTURE.md) - Agent 結構、設計原則與重構歷史

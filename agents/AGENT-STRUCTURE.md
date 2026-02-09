@@ -100,6 +100,20 @@ You are an expert [role description]...
 - **大小限制**: 單個 Agent 建議不超過 6 KB (~2,000 tokens)。
 
 
+### 6. 協作模式 (Collaboration Models)
+
+除了單一 Agent 運作，我們支援兩種協作模式：
+
+1. **Subagents (子代理)**:
+   - **機制**: 在同一 Session 內切換身份 (如 `laravel-expert` -> `laravel-reviewer`)。
+   - **特點**: 共享 Context，適合快速任務與線性流程。
+   - **最佳實踐**: 透過 `description` 自動觸發。
+
+2. **Agent Teams (多代理團隊)**:
+   - **機制**: 多個獨立 Claude Session 平行運作。
+   - **特點**: 獨立 Context，適合複雜架構探索與多面向協作。
+   - **實作**: 參照 `../team-templates.md`。
+
 ---
 
 ## 🚀 最佳實踐精要 (Checklist)

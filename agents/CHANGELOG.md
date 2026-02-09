@@ -1,6 +1,20 @@
 # 📝 變更歷史 (Changelog)
 
 
+## 2026-02-09: Agent Teams 文件更新
+**狀態**: ✅ 已完成 | **文件新增**: `team-templates.md`
+
+**變更內容**:
+- 新增 `team-templates.md`: 定義 Agent Teams 模板與操作指南。
+- 更新 `AGENT-STRUCTURE.md`: 補充協作模式說明 (Subagents vs Teams)。
+- 更新 `README.md`: 加入 Agent Teams 簡介。
+
+**目標**:
+- 釐清 Agent Teams 與 Subagents 的區別與適用場景。
+- 提供實驗性功能的啟用方式與快捷鍵文件。
+
+
+
 ## 2026-01-21: Token 消耗優化 (Scheme C)
 **狀態**: ✅ 已完成 | **總節省**: 34.3% (2,839 tokens)
 
