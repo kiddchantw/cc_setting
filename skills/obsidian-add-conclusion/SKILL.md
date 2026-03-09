@@ -10,8 +10,11 @@ argument-hint: "[檔案名稱]（可選，不指定則掃描整個 inbox）"
 
 ## 固定路徑設定
 
-- **Vault 根目錄**: `/Users/kiddchan/Library/Mobile Documents/iCloud~md~obsidian/Documents/K88Dev/`
-- **Inbox 目錄**: `{Vault 根目錄}0_inbox/`
+> 路徑變數定義於全域 `~/.claude/CLAUDE.md` 的 `Personal Knowledge Base` 區段。
+
+- **Vault 根目錄**: `{Vault root}`
+- **Inbox 目錄**: `{Inbox}`
+- **Frontmatter 規範**: 參照 `../../frontmatter-schema.md`（status、completed 欄位定義）
 
 ## 使用模式
 

@@ -10,9 +10,11 @@ argument-hint: "[url, text, or question]"
 
 ## 固定路徑設定
 
-- **Card Template**: `/Users/kiddchan/Library/Mobile Documents/iCloud~md~obsidian/Documents/K88Dev/Templates/Zettelkasten Card Template.md`
-- **Inbox 目錄**: `/Users/kiddchan/Library/Mobile Documents/iCloud~md~obsidian/Documents/K88Dev/0_inbox/`
-- **Resources 目錄**: `/Users/kiddchan/Library/Mobile Documents/iCloud~md~obsidian/Documents/K88Dev/2_Resources/`
+> 路徑變數定義於全域 `~/.claude/CLAUDE.md` 的 `Personal Knowledge Base` 區段。
+
+- **Card Template**: `{Templates}/Zettelkasten Card Template.md`
+- **Inbox 目錄**: `{Inbox}`
+- **Resources 目錄**: `{Resources}`
 
 ## 執行步驟
 
@@ -83,7 +85,7 @@ glob: "*.md"
 
 ```bash
 # 搜尋檔名包含關鍵字的檔案（排除 5_Pic 和 Templates）
-find "/Users/kiddchan/Library/Mobile Documents/iCloud~md~obsidian/Documents/K88Dev" \
+find "{Vault root}" \
   -not -path "*/5_Pic/*" \
   -not -path "*/Templates/*" \
   -not -path "*/.claude/*" \
@@ -96,7 +98,7 @@ grep -ril "{關鍵字}" \
   --exclude-dir="Templates" \
   --exclude-dir=".claude" \
   --include="*.md" \
-  "/Users/kiddchan/Library/Mobile Documents/iCloud~md~obsidian/Documents/K88Dev"
+  "{Vault root}"
 ```
 
 > 若有多個關鍵字，使用 regex alternation 合併為單次搜尋，例如將 `{關鍵字}` 替換為 `(滲透測試|penetration test)`，不需對每個關鍵字分別執行搜尋。
@@ -121,7 +123,7 @@ grep -ril "{關鍵字}" \
 在確定檔案名稱後、建立檔案前，執行以下指令掃描 `0_inbox/` 和 `2_Resources/` 是否已有同名檔案：
 
 ```bash
-find "/Users/kiddchan/Library/Mobile Documents/iCloud~md~obsidian/Documents/K88Dev/0_inbox" "/Users/kiddchan/Library/Mobile Documents/iCloud~md~obsidian/Documents/K88Dev/2_Resources" -name "{檔案名稱}.md"
+find "{Inbox}" "{Resources}" -name "{檔案名稱}.md"
 ```
 
 - **無結果**：繼續建立
@@ -152,7 +154,7 @@ date +"%Y%m%d%H%M%S"   # for id
 #### Step 4-2：再次確認 2_Resources 無重複
 
 ```bash
-find "/Users/kiddchan/Library/Mobile Documents/iCloud~md~obsidian/Documents/K88Dev/2_Resources" -name "{檔案名稱}.md"
+find "{Resources}" -name "{檔案名稱}.md"
 ```
 
 - **有結果**：加數字後綴直到不重複

@@ -76,6 +76,14 @@ Skills 採用「延遲載入」設計以節省成本。
 | **工具整合** | 🔄 Flutter OpenAPI Client 生成 | `@flutter-openapi-generator` | - |
 | | 📱 Flutter 平台整合 | `@flutter-platform-integration` | - |
 | | ⚛️ React/Next.js 優化指南 | `@react-best-practices` | - |
+| **Obsidian 筆記庫** | Vault 路徑定義於全域 `~/.claude/CLAUDE.md` 的 `Personal Knowledge Base` 區段 | | |
+| | 📝 新增 Zettelkasten 知識卡片 | `@obsidian-add-cards` | `frontmatter-schema.md` |
+| | 📓 輕量隨記（靈感、備忘、踩坑） | `@obsidian-add-devlog` | `frontmatter-schema.md` |
+| | 📋 新增專案 Session 紀錄 | `@obsidian-add-projects-session` | `frontmatter-schema.md` |
+| | 🔎 從筆記庫搜尋過往紀錄 | `@obsidian-dev-lookup` | - |
+| | ✏️ 為筆記補上結論 / 解法 | `@obsidian-add-conclusion` | `frontmatter-schema.md` |
+| | 🧹 補齊 Frontmatter 欄位 | `@obsidian-enrich-frontmatter` | `frontmatter-schema.md` |
+| | 📦 搬移已完成的 Inbox 筆記 | `@obsidian-move-inbox` | - |
 
 ---
 

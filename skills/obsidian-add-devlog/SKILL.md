@@ -12,8 +12,10 @@ argument-hint: "[可選：筆記主題或內容簡述]"
 
 ## 固定路徑設定
 
-- **Vault 根目錄**: `/Users/kiddchan/Library/Mobile Documents/iCloud~md~obsidian/Documents/K88Dev/`
-- **存放目錄**: `0_inbox/`
+> 路徑變數定義於全域 `~/.claude/CLAUDE.md` 的 `Personal Knowledge Base` 區段。
+
+- **Vault 根目錄**: `{Vault root}`
+- **存放目錄**: `{Inbox}`
 
 ## 筆記類型（status）
 

@@ -17,10 +17,12 @@ argument-hint: "[檔案名稱1, 檔案名稱2, ...]（可選，不指定則掃�
 
 ## 固定路徑設定
 
-- **Vault 根目錄**: `/Users/kiddchan/Library/Mobile Documents/iCloud~md~obsidian/Documents/K88Dev/`
-- **Vault 名稱**: `Documents`
-- **Inbox 目錄**: `{Vault 根目錄}0_inbox/`
-- **Resources 索引**: `{Vault 根目錄}2_Resources/_Index.md`
+> 路徑變數定義於全域 `~/.claude/CLAUDE.md` 的 `Personal Knowledge Base` 區段。
+
+- **Vault 根目錄**: `{Vault root}`
+- **Vault 名稱**: `{Vault name}`
+- **Inbox 目錄**: `{Inbox}`
+- **Resources 索引**: `{Resources}/_Index.md`
 
 ## 前置檢查：偵測 Obsidian 官方 CLI
 

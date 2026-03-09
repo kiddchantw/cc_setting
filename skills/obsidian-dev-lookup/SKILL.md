@@ -10,8 +10,10 @@ argument-hint: "[搜尋主題，例如：ssl 憑證更新]"
 
 ## 固定路徑設定
 
-- **Vault 根目錄**: `/Users/kiddchan/Library/Mobile Documents/iCloud~md~obsidian/Documents/K88Dev/`
-- **Vault 名稱**: `Documents`
+> 路徑變數定義於全域 `~/.claude/CLAUDE.md` 的 `Personal Knowledge Base` 區段。
+
+- **Vault 根目錄**: `{Vault root}`
+- **Vault 名稱**: `{Vault name}`
 - **搜尋範圍**：整個 vault，排除以下目錄：
   - `5_Pic/`（圖片資料夾）
   - `Templates/`（模板不是實際紀錄）
