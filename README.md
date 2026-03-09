@@ -30,7 +30,16 @@
     ├── flutter-performance-review/    # 效能審查
     ├── flutter-platform-integration/  # 平台整合
     ├── flutter-security-review/       # 安全審查
-    └── react-best-practices/          # React 最佳實踐
+    ├── react-best-practices/          # React 最佳實踐
+    │
+    │   # Obsidian 筆記庫技能
+    ├── obsidian-add-cards/            # 新增 Zettelkasten 卡片
+    ├── obsidian-add-conclusion/       # 補結論 / 解法
+    ├── obsidian-add-devlog/           # 輕量隨記
+    ├── obsidian-add-projects-session/ # 新增專案 Session
+    ├── obsidian-dev-lookup/           # 開發前查詢
+    ├── obsidian-enrich-frontmatter/   # 補齊 Frontmatter
+    └── obsidian-move-inbox/           # 搬移完成的 Inbox
 ```
 
 ## 📚 Agents vs Skills
@@ -60,6 +69,15 @@ AI 專家角色根據對話內容自動啟動，詳見 [agents/README.md](agents
 - 📋 `/git-organize-commits` - Git 提交整理
 - 🆕 `/create-session` - 新建開發 Session
 - 🔒 `/laravel-security-review` - Laravel 安全審查
+
+**Obsidian 筆記庫 Skills**:
+- 📝 `/obsidian-add-cards` - 新增 Zettelkasten 知識卡片
+- 📓 `/obsidian-add-devlog` - 輕量隨記（靈感、備忘、踩坑）
+- 📋 `/obsidian-add-projects-session` - 新增專案 Session 紀錄
+- 🔎 `/obsidian-dev-lookup` - 從筆記庫搜尋過往紀錄
+- ✏️ `/obsidian-add-conclusion` - 為筆記補上結論/解法
+- 🧹 `/obsidian-enrich-frontmatter` - 補齊 Frontmatter 欄位
+- 📦 `/obsidian-move-inbox` - 搬移已完成的 Inbox 筆記
 
 ## 🏗️ 系統架構
 

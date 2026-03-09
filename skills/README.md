@@ -68,6 +68,7 @@ Skills 採用「延遲載入」設計以節省成本。
 | | 🧪 Red-Green-Refactor TDD 循環 | `@tdd-workflow` | `agents/laravel-expert.md` |
 | | 📝 測試規劃與設計 | `@test-planning` | - |
 | **Git 管理** | 📋 整理變更並撰寫 Conventional Commits | `@git-organize-commits` | `agents/git-commit-tw.md` |
+| | 📝 從 Session 更新 CHANGELOG 並推進版本號 | `@update-changelog` | - |
 | **程式碼審查** | 🔒 Laravel 安全性審查 | `@laravel-security-review` | `agents/laravel-reviewer.md` |
 | | ⚡ Laravel 效能審查 | `@laravel-performance-review` | `agents/laravel-reviewer.md` |
 | | 🔒 Flutter 安全性審查 | `@flutter-security-review` | - |

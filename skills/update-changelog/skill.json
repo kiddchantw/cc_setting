@@ -1,0 +1,6 @@
+{
+  "name": "update-changelog",
+  "description": "自動從 session 文件更新 CHANGELOG.md 並推進版本號。當專案有新的 session 記錄但尚未更新 CHANGELOG 時使用。觸發詞：「更新 changelog」、「update changelog」、「版本發布」、「release version」",
+  "version": "1.0.0",
+  "instruction": "instructions.md"
+}

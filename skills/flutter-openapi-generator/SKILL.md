@@ -1,118 +1,73 @@
 ---
 name: flutter-openapi-generator
-description: "Automatically detects OpenAPI/Swagger specifications in Flutter projects and generates type-safe API client code. Use when: 1) openapi.yaml or swagger.yaml is found in the project, 2) user requests API client generation, 3) user wants to integrate with REST APIs. This skill handles dependency installation, code generation configuration, and creates properly structured API services following Flutter best practices."
+description: "Automatically detects OpenAPI/Swagger specifications in Flutter projects and generates type-safe API client code. Use when: 1) openapi.yaml or swagger.yaml is found in the project, 2) user requests API client generation, 3) user wants to integrate with REST APIs."
 ---
 
-You are a specialized Flutter API client generation expert. Help developers generate type-safe, well-structured API client code from OpenAPI/Swagger specifications.
+## 用途
 
-## Detection and Triggers
+從 `openapi.yaml` 生成 Flutter (dart-dio) API client。
 
-Activate when:
-1. `openapi.yaml`, `openapi.json`, `swagger.yaml`, or `swagger.json` detected
-2. User requests API client generation from OpenAPI spec
-3. User asks about integrating with REST APIs that have OpenAPI documentation
+## 已知問題
 
-## Initial Analysis
+`build_runner` 內嵌的 `openapi_generator` dart 包在遇到 spec 驗證錯誤時，會**靜默跳過部分 endpoint** 而不報錯。
+因此本 skill **必須使用 CLI 版本** `openapi-generator`（Homebrew 安裝）來生成。
 
-When activated:
-1. **Locate OpenAPI spec files** in: project root, `api/`, `spec/`, `docs/`
-2. **Check existing setup**: `pubspec.yaml`, `build.yaml`, `lib/api/`
-3. **Determine OpenAPI version**: 2.0, 3.0, or 3.1
+## 流程（三步）
 
-## Recommended Tech Stack
+### Step 1：確保 openapi.yaml 是最新的
 
-**Primary Approach**:
-- **dio** - HTTP client
-- **retrofit** - Type-safe HTTP client
-- **json_annotation** + **json_serializable** - JSON serialization
-- **openapi_generator** - Code generation
-- **freezed** (optional) - Immutable models
+如果專案同時有 Laravel 與 Flutter：
 
-## Quick Setup
+```bash
+# 在 Docker 內重新產生 Laravel spec（遵守 Docker 規範）
+docker-compose -f ../../laradock/docker-compose.yml exec \
+  -w /var/www/a126/A126-kompraa_web workspace \
+  php artisan scribe:generate --force
 
-### 1. Dependencies (pubspec.yaml)
-```yaml
-dependencies:
-  dio: ^5.4.0
-  json_annotation: ^4.8.1
-  retrofit: ^4.0.3
-
-dev_dependencies:
-  build_runner: ^2.4.7
-  json_serializable: ^6.7.1
-  retrofit_generator: ^8.0.6
-  openapi_generator: ^4.6.2
+# 複製到 Flutter 專案
+cp A126-kompraa_web/public/docs/openapi.yaml a126_kompraa_flutter/openapi.yaml
 ```
 
-### 2. Generate Code
+### Step 2：用 CLI 生成 api_client
+
 ```bash
+cd a126_kompraa_flutter
+
+openapi-generator generate \
+  -o api_client \
+  -i openapi.yaml \
+  -g dart-dio \
+  --additional-properties=pubName=a126_api_client,pubAuthor="A126 Team" \
+  --skip-validate-spec
+```
+
+> **不要用** `flutter pub run build_runner build` 來觸發 openapi_generator。
+> build_runner 版本會靜默跳過有問題的 endpoint。
+
+### Step 3：生成 serializer (.g.dart)
+
+```bash
+cd api_client
 flutter pub get
 flutter pub run build_runner build --delete-conflicting-outputs
 ```
 
-### 3. Project Structure
-```
-lib/
-├── api/
-│   ├── generated/      # Generated code (don't edit)
-│   ├── api_service.dart  # Wrapper service
-│   └── api_config.dart   # Configuration
-└── ...
-```
+## 驗證
 
-### 4. .gitignore
-```gitignore
-lib/api/generated/
-*.g.dart
-*.freezed.dart
+生成完後快速確認目標 endpoint 有產出：
+
+```bash
+# 確認 API class 存在
+ls api_client/lib/src/api/ | grep -i <target>
+
+# 確認 model 存在
+ls api_client/lib/src/model/ | grep -i <target>
 ```
 
-## On-Demand Examples
+找不到 → 生成失敗，不要繼續往下做 service/provider。
 
-For detailed code examples, read:
-- `examples/dependencies.md` - Full dependency setup
-- `examples/api-service.md` - API service wrapper implementation
-- `examples/interceptors.md` - Auth, logging, error interceptors
-- `examples/testing.md` - Mock API client for testing
+## 注意事項
 
-## Best Practices
-
-### Code Generation
-- **Don't edit generated files** - Always regenerate from spec
-- **Commit spec file, not generated code** (unless necessary)
-- **Regenerate regularly** to sync with API changes
-
-### API Client Design
-- **Singleton pattern** for centralized Dio configuration
-- **Add interceptors** for logging, auth, error handling
-- **Environment-based URLs** for dev/staging/prod
-- **Appropriate timeouts** and retry logic
-
-### Error Handling
-```dart
-try {
-  final response = await api.getData();
-} on DioException catch (e) {
-  // Handle timeout, network errors, bad response
-}
-```
-
-## Troubleshooting
-
-| Issue | Solution |
-|-------|----------|
-| Build runner conflicts | `--delete-conflicting-outputs` |
-| Compilation errors | Check OpenAPI spec validity |
-| Serialization issues | Run build_runner after changes |
-
-## Final Checklist
-
-- [ ] OpenAPI spec file is valid
-- [ ] Dependencies added to `pubspec.yaml`
-- [ ] Code generation configured
-- [ ] Generated code compiles
-- [ ] API service wrapper created
-- [ ] Error handling implemented
-- [ ] `.gitignore` updated
-
-**Always prioritize type safety, null safety, and Flutter best practices.**
+- PHP / Composer / Artisan 指令必須在 Docker 容器內執行（見 `.cursorrules`）
+- `--skip-validate-spec` 是必要的，因為 spec 可能有 Scribe 產生的非致命驗證問題（如 duplicate operationId）
+- 如果新 endpoint 在 spec 裡找不到，先檢查 Laravel Controller 的 Scribe 註解是否完整（需要 `@response 200` 帶 schema）
