@@ -175,13 +175,21 @@ date +"%Y%m%d%H%M%S"   # for id
 
 讀取 Card Template，填入以下內容：
 
-**Frontmatter：** 依照 `.claude/frontmatter-schema.md` 的 `zettelkasten` 類型規格填入。
+**Frontmatter：** 依照 `.claude/frontmatter-schema.md` 的 `zettelkasten` 類型規格填入（canonical schema 欄位順序）。
 ⚠️ **注意：所有的 `tags` 與 `keywords` 必須全為英文。**
 - `id`: 當前時間戳
 - `type`: `zettelkasten`
-- `status`: `exploring`（新建卡片預設值）
+- `sub-type`: `null`
+- `project`: 從內容推斷，通用知識填 `null`
+- `sub-project`: `null`
+- `tags`: 推斷填入，無則 `[]`
+- `keywords`: 推斷填入，無則 `[]`
+- `aliases`: `[]`
+- `status`: `active`
+- `resolution`: `null`
+- `maturity`: `seed`（新建卡片預設值）
+- `updated`: 當下時間
 - `completed`: `null`
-- 其餘共用欄位（`project`、`tags`、`keywords`、`updated`）見 schema
 
 **各 Section 填入規則：**
 - `## 💡 核心概念`：一段話（2-4 句）說明核心重點

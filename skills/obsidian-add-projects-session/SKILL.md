@@ -45,11 +45,20 @@ argument-hint: "[project-name] [task-description]"
 
 **Frontmatter 填入規則：**
 
-依照 `.claude/frontmatter-schema.md` session 規格填入所有欄位，以下為 session 特定值：
+依照 `.claude/frontmatter-schema.md` session 規格填入所有欄位（canonical schema 欄位順序），以下為 session 特定值：
+- `id`: 當前時間戳
 - `type`: `session`
+- `sub-type`: `null`
 - `project`: 設為 project-name
+- `sub-project`: `null`（若有子票 / 子模組可填入）
+- `tags`: 從 task-description 推斷，無則 `[]`
+- `keywords`: 從 task-description 推斷，無則 `[]`
+- `aliases`: `[]`
 - `status`: `active`
-- `completed`: 必須明確寫 `completed: null`（**不可留空**），留空會導致 Dataview Dashboard 無法正確過濾顯示此筆記
+- `resolution`: `null`
+- `maturity`: `null`
+- `updated`: 當下時間
+- `completed`: 必須明確寫 `null`（**不可留空**），留空會導致 Dataview Dashboard 無法正確過濾
 
 **標題填入規則：**
 - 有 task-description：`# {task-description}`

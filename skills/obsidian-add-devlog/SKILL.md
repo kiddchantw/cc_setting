@@ -17,10 +17,6 @@ argument-hint: "[可選：筆記主題或內容簡述]"
 - **Vault 根目錄**: `{Vault root}`
 - **存放目錄**: `{Inbox}`
 
-## 筆記類型（status）
-
-依照 `[[frontmatter-schema.md]]` Status 選項表，type = `devlog` 的選項：`assigned` / `note` / `open` / `workaround` / `resolved`
-
 ## 執行步驟
 
 ### Step 1：取得內容
@@ -28,21 +24,21 @@ argument-hint: "[可選：筆記主題或內容簡述]"
 - 若用戶有提供 `$ARGUMENTS` → 直接作為主題／內容
 - 若無 → 從當前對話 context 提取用戶想記錄的內容
 
-### Step 2：判斷 status
+### Step 2：判斷 resolution
 
-根據內容判斷：
-- 「老闆說要做…」、「被指派了…」、「需要處理…」→ `assigned`
-- 純粹觀察、備忘 → `note`
-- 有明確問題但尚未解決 → `open`
-- 有完整解法 → `resolved`
-- 有暫時繞過方法 → `workaround`
+根據內容判斷 `resolution` 值（`status` 固定為 `active`）：
+
+- 「老闆說要做…」、「被指派了…」、「需要處理…」→ `resolution: open`
+- 純粹觀察、備忘、靈感 → `resolution: open`
+- 有明確問題但尚未解決 → `resolution: open`
+- 有完整解法 → `resolution: resolved`（同時 `status: done`，`completed` 填當下時間）
+- 有暫時繞過方法 → `resolution: workaround`（同時 `status: done`，`completed` 填當下時間）
 
 ### Step 3：產生時間與 ID
 
 ```bash
 date +"%Y%m%d%H%M%S"    # id
 date +"%Y-%m-%dT%H:%M"  # updated / completed
-date +"%Y-%m-%d %H:%M"  # date created / date modified
 ```
 
 ### Step 4：產生 keywords 與 tags
@@ -58,7 +54,22 @@ date +"%Y-%m-%d %H:%M"  # date created / date modified
 
 ### Step 6：建立筆記
 
-使用 Write 工具建立。Frontmatter 依照 `[[frontmatter-schema.md]]` devlog 規格填入所有欄位，`type` 固定為 `devlog`。
+讀取 `DevLog Template.md`，填入所有欄位後使用 Write 工具建立。
+
+Frontmatter 填入規則（依照 canonical schema 欄位順序）：
+- `id`: 當前時間戳
+- `type`: `devlog`
+- `sub-type`: `null`
+- `project`: 從內容推斷，無則 `null`
+- `sub-project`: `null`
+- `tags`: 推斷填入，無則 `[]`
+- `keywords`: 推斷填入，無則 `[]`
+- `aliases`: `[]`
+- `status`: `active`（若有完整解法或 workaround 則填 `done`）
+- `resolution`: 依 Step 2 判斷（`open` / `workaround` / `resolved`）
+- `maturity`: `null`
+- `updated`: 當下時間
+- `completed`: `null`（若 `status: done` 則填當下時間）
 
 內容格式：
 
@@ -73,4 +84,4 @@ date +"%Y-%m-%d %H:%M"  # date created / date modified
 
 告知：
 - 筆記標題與存放路徑
-- status
+- resolution 值
