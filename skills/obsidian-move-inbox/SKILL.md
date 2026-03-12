@@ -50,7 +50,7 @@ obsidian version 2>/dev/null && echo "CLI_AVAILABLE" || echo "CLI_UNAVAILABLE"
 - 只搬移 `completed` **有值**的筆記
 - `completed` 為空 / null / 無此欄位 → 留在 inbox，報告中標註「尚未完成」
 
-## 目的地查找規則（依 `project` 欄位）
+## 目的地查找規則（依 `project` + `sub-project` 欄位）
 
 1. `project` 為 null / 空 / 無此欄位 → **`2_Resources/`**
 2. `project` 有值 → 依序檢查目錄是否存在：
@@ -58,8 +58,13 @@ obsidian version 2>/dev/null && echo "CLI_AVAILABLE" || echo "CLI_UNAVAILABLE"
    - `{Archives 目錄}{project}/` → 存在就搬
    - `{Side 目錄}{project}/` → 存在就搬
    - 都找不到 → **留在 inbox**，標註「專案目錄不存在」
+3. 找到專案目錄後，若 `sub-project` 有值（非 null / 非空）：
+   - 檢查 `{已找到的專案目錄}/{sub-project}/` 是否存在
+   - 存在 → 搬移到 `{專案目錄}/{sub-project}/`
+   - 不存在 → **自動建立** `{專案目錄}/{sub-project}/` 子資料夾，然後搬入
+4. `sub-project` 為 null / 空 / 無此欄位 → 搬到專案目錄根層級
 
-**注意：此 skill 不自行推斷 project 歸屬，完全依賴用戶已填入的 `project` 值。**
+**注意：此 skill 不自行推斷 project / sub-project 歸屬，完全依賴用戶已填入的值。**
 
 ## 執行步驟
 
@@ -79,20 +84,22 @@ obsidian version 2>/dev/null && echo "CLI_AVAILABLE" || echo "CLI_UNAVAILABLE"
 將所有筆記整理成一份表格：
 
 ```
-| # | 檔案名稱 | completed | 目的地 | 專案 | 備註 |
-|---|----------|-----------|--------|------|------|
-| 1 | xxx.md   | 2026-03-01T14:30 | 2_Resources | — | |
-| 2 | yyy.md   | 2026-03-02T10:00 | 1_Projects/a126 | a126 | |
-| 3 | zzz.md   | 2026-03-02T15:00 | 4_side/beer | beer | |
-| 4 | aaa.md   |           | 留在 inbox | — | 尚未完成 |
-| 5 | bbb.md   | 2026-03-03T09:00 | 留在 inbox | q99 | 專案目錄不存在 |
+| # | 檔案名稱 | completed | 目的地 | 專案 | 子專案 | 備註 |
+|---|----------|-----------|--------|------|--------|------|
+| 1 | xxx.md   | 2026-03-01T14:30 | 2_Resources | — | — | |
+| 2 | yyy.md   | 2026-03-02T10:00 | 1_Projects/a126 | a126 | — | |
+| 3 | zzz.md   | 2026-03-02T15:00 | 4_side/beer | beer | — | |
+| 4 | aaa.md   |           | 留在 inbox | — | — | 尚未完成 |
+| 5 | bbb.md   | 2026-03-03T09:00 | 留在 inbox | q99 | — | 專案目錄不存在 |
+| 6 | ccc.md   | 2026-03-03T12:00 | 1_Projects/a126/flutter | a126 | flutter | |
+| 7 | ddd.md   | 2026-03-03T14:00 | 1_Projects/claw/zeroclaw | claw | zeroclaw | 子資料夾已自動建立 |
 ```
 
 在表格末尾附上統計摘要：
 - N 篇 → 2_Resources
-- N 篇 → 1_Projects（各專案分別列出）
-- N 篇 → 3_Archives（各專案分別列出）
-- N 篇 → 4_side（各專案分別列出）
+- N 篇 → 1_Projects（各專案/子專案分別列出）
+- N 篇 → 3_Archives（各專案/子專案分別列出）
+- N 篇 → 4_side（各專案/子專案分別列出）
 - N 篇 → 留在 inbox（尚未完成）
 - N 篇 → 留在 inbox（專案目錄不存在）
 
@@ -115,14 +122,14 @@ obsidian version 2>/dev/null && echo "CLI_AVAILABLE" || echo "CLI_UNAVAILABLE"
 
 #### 官方 CLI 模式（優先）— 自動更新內部連結
 
+> ⚠️ v2 原則：搬移只改位置，不改語義 frontmatter。不論搬到哪個目錄，都不修改 `type`、`sub-type`、`status`、`resolution`、`maturity`、`project`。
+
 **搬到 2_Resources：**
 ```bash
 obsidian move file="{filename}" to=2_Resources/
-obsidian properties:set file="{filename}" type=zettelkasten
-obsidian properties:set file="{filename}" project=null
 ```
 
-**搬到 1_Projects、3_Archives 或 4_side：**
+**搬到 1_Projects、3_Archives 或 4_side（無 sub-project）：**
 ```bash
 obsidian move file="{filename}" to=1_Projects/{project}/
 # 或
@@ -131,22 +138,25 @@ obsidian move file="{filename}" to=3_Archives/{project}/
 obsidian move file="{filename}" to=4_side/{project}/
 ```
 
+**搬到 sub-project 子資料夾（sub-project 有值）：**
+```bash
+# 若子資料夾不存在，先建立
+mkdir -p "{vault_root}/1_Projects/{project}/{sub-project}"
+obsidian move file="{filename}" to=1_Projects/{project}/{sub-project}/
+```
+
 > 官方 CLI 不需要 `vault=` 參數。`obsidian move` 會自動更新 vault 中所有指向該檔案的內部連結 `[[]]`。
 
 ---
 
 #### Fallback 模式（無 CLI）
 
-**搬到 2_Resources 的檔案：**
-1. 用 Bash `mv` 搬移檔案到 `{Resources 目錄}`
-2. 更新 frontmatter：
-   - 設定 `type: zettelkasten`
-   - 設定 `project: null`（通用知識不隸屬特定專案）
-   - 保留原有的 `completed`、`status`、`tags`、`keywords` 等欄位
+> ⚠️ v2 原則：搬移只改位置，不改語義 frontmatter。所有目的地一律只做 `mv`，不修改任何 frontmatter 欄位。
 
-**搬到 1_Projects、3_Archives 或 4_side 的檔案：**
-1. 用 Bash `mv` 搬移檔案到對應的專案目錄
-2. 保留原有 frontmatter（`project` 值不變）
+**所有目的地（2_Resources / 1_Projects / 3_Archives / 4_side）：**
+1. 若 `sub-project` 有值，先確認子資料夾存在：`mkdir -p "{目的地}/{sub-project}"`
+2. 用 Bash `mv` 搬移檔案到對應目錄（或其子資料夾）
+3. 保留原有 frontmatter 完全不變
 
 > Fallback 模式不會自動更新內部連結，搬移後可能需手動修正 `[[]]` 連結。
 
