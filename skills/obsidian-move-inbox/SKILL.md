@@ -124,25 +124,27 @@ obsidian version 2>/dev/null && echo "CLI_AVAILABLE" || echo "CLI_UNAVAILABLE"
 
 > ⚠️ v2 原則：搬移只改位置，不改語義 frontmatter。不論搬到哪個目錄，都不修改 `type`、`sub-type`、`status`、`resolution`、`maturity`、`project`。
 
+> ⚠️ iCloud vault 路徑修正：Obsidian CLI 在 iCloud Drive vault 下會把 `to=` 路徑解析到 vault 的上層目錄，導致少一層。所有 `to=` 參數必須加上 `{Vault name}/` 前綴才能正確搬移。
+
 **搬到 2_Resources：**
 ```bash
-obsidian move file="{filename}" to=2_Resources/
+obsidian move file="{filename}" to={Vault name}/2_Resources/
 ```
 
 **搬到 1_Projects、3_Archives 或 4_side（無 sub-project）：**
 ```bash
-obsidian move file="{filename}" to=1_Projects/{project}/
+obsidian move file="{filename}" to={Vault name}/1_Projects/{project}/
 # 或
-obsidian move file="{filename}" to=3_Archives/{project}/
+obsidian move file="{filename}" to={Vault name}/3_Archives/{project}/
 # 或
-obsidian move file="{filename}" to=4_side/{project}/
+obsidian move file="{filename}" to={Vault name}/4_side/{project}/
 ```
 
 **搬到 sub-project 子資料夾（sub-project 有值）：**
 ```bash
 # 若子資料夾不存在，先建立
 mkdir -p "{vault_root}/1_Projects/{project}/{sub-project}"
-obsidian move file="{filename}" to=1_Projects/{project}/{sub-project}/
+obsidian move file="{filename}" to={Vault name}/1_Projects/{project}/{sub-project}/
 ```
 
 > 官方 CLI 不需要 `vault=` 參數。`obsidian move` 會自動更新 vault 中所有指向該檔案的內部連結 `[[]]`。
