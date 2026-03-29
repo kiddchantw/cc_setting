@@ -1,6 +1,6 @@
 ---
 name: obsidian-move-inbox
-description: 搬移 0_inbox 中已完成（completed 有值）的筆記到對應目錄。當用戶說「搬移 inbox」、「move inbox」、「清 inbox」時使用。支援指定單篇或多篇檔案。
+description: 搬移 0_inbox 中的筆記到對應目錄。zettelkasten 不檢查 completed 可直接搬移；其他 type 需 completed 有值。當用戶說「搬移 inbox」、「move inbox」、「清 inbox」時使用。支援指定單篇或多篇檔案。
 argument-hint: "[檔案名稱1, 檔案名稱2, ...]（可選，不指定則掃描整個 inbox）"
 ---
 
@@ -16,6 +16,11 @@ argument-hint: "[檔案名稱1, 檔案名稱2, ...]（可選，不指定則掃�
    - 例：「move inbox SPF.md」、「搬移 inbox SPF.md, admin.md」
    - 接受檔案名稱（不含路徑），自動在 `0_inbox/` 下查找
    - 找不到的檔案在報告中標註「檔案不存在」
+3. **指定檔案強制搬移模式**（有參數 + 用戶明確指定目的地）
+   - 例：「把 `A.md` 移到 `2_Resources`」、「`B.md` 搬到 `1_Projects/x/y`」
+   - 此模式可忽略 `completed` 是否有值（因為屬於用戶明確指令）
+   - 仍必須執行安全檢查（重名、wikilink 影響）與最終確認
+   - 若用戶明確要求「直接執行」可略過互動式確認（等同 no-confirm）
 
 ## 固定路徑設定
 
@@ -47,8 +52,11 @@ obsidian version 2>/dev/null && echo "CLI_AVAILABLE" || echo "CLI_UNAVAILABLE"
 
 ## 前提條件
 
-- 只搬移 `completed` **有值**的筆記
-- `completed` 為空 / null / 無此欄位 → 留在 inbox，報告中標註「尚未完成」
+- **整批模式 / 一般指定檔案模式**：
+  - `type: zettelkasten` → **不檢查 `completed`**，直接視為可搬移（zettelkasten 的 `completed` 正常為 null，它透過 `maturity` 追蹤成熟度而非完成狀態）
+  - 其他 type → 只搬移 `completed` **有值**的筆記
+  - `completed` 為空 / null / 無此欄位（且非 zettelkasten）→ 留在 inbox，報告中標註「尚未完成」
+- **指定檔案強制搬移模式**：可忽略 `completed`，依用戶指定目的地搬移
 
 ## 目的地查找規則（依 `project` + `sub-project` 欄位）
 
@@ -75,9 +83,14 @@ obsidian version 2>/dev/null && echo "CLI_AVAILABLE" || echo "CLI_UNAVAILABLE"
 
 ### Step 2：篩選分類
 
-讀取每篇筆記的 frontmatter，分為：
-- **可搬移**：`completed` 有值（非空、非 null）
-- **尚未完成**：`completed` 為空 / null / 無此欄位
+讀取每篇筆記的 frontmatter，依模式處理：
+- **整批模式 / 一般指定檔案模式**
+  - **可搬移（zettelkasten）**：`type: zettelkasten` 不檢查 `completed`，直接可搬移。報告中備註欄顯示當前 `maturity` 值（如 `maturity: seed`），提醒用戶知識卡片的成熟度狀態
+  - **可搬移（其他 type）**：`completed` 有值（非空、非 null）
+  - **尚未完成**：`completed` 為空 / null / 無此欄位（且非 zettelkasten）
+- **指定檔案強制搬移模式**
+  - 用戶指定的檔案一律視為「可搬移」
+  - `completed` 僅做報告欄位參考，不阻擋執行
 
 ### Step 3：產生分流報告
 
@@ -103,6 +116,12 @@ obsidian version 2>/dev/null && echo "CLI_AVAILABLE" || echo "CLI_UNAVAILABLE"
 - N 篇 → 留在 inbox（尚未完成）
 - N 篇 → 留在 inbox（專案目錄不存在）
 
+#### 指定檔案強制搬移模式的報告欄位補充
+
+- `模式` 欄位標註：`forced`
+- `completed` 若為空，`備註` 標註：`使用者指定強制搬移`
+- 若目的地由用戶直接指定，優先使用指定路徑，不再依 `project/sub-project` 自動推斷
+
 ### Step 4：等待用戶確認
 
 使用 AskUserQuestion 詢問用戶：「以上分流建議是否 OK？你可以指定調整某幾篇的目的地。」
@@ -114,9 +133,19 @@ obsidian version 2>/dev/null && echo "CLI_AVAILABLE" || echo "CLI_UNAVAILABLE"
 
 若用戶要求調整，修改對應項目後重新顯示表格，再次確認。
 
+> 若用戶明確表示「直接執行」、「不用再問」、「全搬」等，可略過本步驟，直接進入 Step 5。
+
 ### Step 5：執行搬移
 
 確認後，依序處理每篇可搬移的筆記。
+
+#### 執行前安全檢查（所有模式都要）
+
+1. **重名檢查**：目的地若已有同名檔案，停止該檔案搬移並回報衝突
+2. **Wikilink 影響掃描**：搬移前先搜尋 `[[檔名]]` 引用
+3. **更新策略**：
+   - CLI 模式：由 `obsidian move` 自動更新內部連結
+   - Fallback 模式：回報「可能需手動修正連結」
 
 ---
 
@@ -166,6 +195,10 @@ obsidian move file="{filename}" to={Vault name}/1_Projects/{project}/{sub-projec
 
 #### 專案目錄不存在的檔案：
 - 不做任何操作，留在 inbox
+
+#### 指定檔案強制搬移模式的目的地規則
+- 若用戶已提供完整目的地路徑（如 `1_Projects/claw/zeroclaw`），直接使用該路徑
+- 若用戶只說「搬到 project」，但未給完整路徑，才回退到「目的地查找規則」
 
 ### Step 6：完成報告
 

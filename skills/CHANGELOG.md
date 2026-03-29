@@ -1,5 +1,13 @@
 ## 📝 版本歷史
 
+- **2026-03-26**: 新增 Obsidian index 管理體系
+  - **新增 skill**: `obsidian-update-index`
+    - 支援增量更新（只補入 index 未列出的新筆記）與完整重建（`--rebuild`）兩種模式
+    - 搭配 `obsidian-move-inbox` 使用：搬完筆記後執行 `update-index` 自動補摘要
+  - **vault 索引建設**：為 `1_Projects`、`3_Archives`、`4_side` 所有子資料夾建立 `_index_*.md`（共 13 個）
+  - **CLAUDE.md 新增查詢導航策略**：優先讀 `_index_*.md` 作為入口，再用 CLI 深挖
+  - **`obsidian-dev-lookup` 新增 Step 0**：自動偵測並讀取專案 index，減少多輪搜尋成本
+
 - **2026-01-20**: 架構簡化與文檔精煉
   - **架構調整**: 移除了複雜的 `resources/` 子目錄，改採扁平化結構 (`references.md`, `examples.md`)。
   - **文件優化**:

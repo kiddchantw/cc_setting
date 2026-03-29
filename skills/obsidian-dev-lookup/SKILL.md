@@ -30,6 +30,17 @@ obsidian version 2>/dev/null && echo "CLI_AVAILABLE" || echo "CLI_UNAVAILABLE"
 
 ## 執行步驟
 
+### Step 0：先查 Index（若存在）
+
+1. 從 `$ARGUMENTS` 推斷對應的專案名稱（例如 "a126 的 ssl 問題" → 專案 `a126`）
+2. Glob 搜尋 `1_Projects/{project}/_index_*.md`
+3. **若存在** → 讀取 index 摘要列表，從摘要初步篩選候選筆記，記下相關筆記路徑後直接跳到 Step 3
+4. **若不存在** → 繼續 Step 1 正常搜尋流程
+
+> 目的：有 index 時一次讀完摘要即可定位，避免多輪 CLI 搜尋耗費 token。
+
+---
+
 ### Step 1：提取搜尋關鍵字
 
 從用戶的 `$ARGUMENTS` 中提取：

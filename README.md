@@ -39,7 +39,8 @@
     ├── obsidian-add-projects-session/ # 新增專案 Session
     ├── obsidian-dev-lookup/           # 開發前查詢
     ├── obsidian-enrich-frontmatter/   # 補齊 Frontmatter
-    └── obsidian-move-inbox/           # 搬移完成的 Inbox
+    ├── obsidian-move-inbox/           # 搬移完成的 Inbox
+    └── obsidian-update-index/         # 更新專案資料夾的 _index_*.md
 ```
 
 ## 📚 Agents vs Skills
@@ -78,6 +79,7 @@ AI 專家角色根據對話內容自動啟動，詳見 [agents/README.md](agents
 - ✏️ `/obsidian-add-conclusion` - 為筆記補上結論/解法
 - 🧹 `/obsidian-enrich-frontmatter` - 補齊 Frontmatter 欄位
 - 📦 `/obsidian-move-inbox` - 搬移已完成的 Inbox 筆記
+- 🗂️ `/obsidian-update-index` - 更新專案資料夾的 `_index_*.md`（增量補入或完整重建）
 
 ## 🏗️ 系統架構
 
