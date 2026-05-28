@@ -77,6 +77,7 @@ Skills 採用「延遲載入」設計以節省成本。
 | | 📱 Flutter 平台整合 | `@flutter-platform-integration` | - |
 | | ⚛️ React/Next.js 優化指南 | `@react-best-practices` | - |
 | **Obsidian 筆記庫** | Vault 路徑定義於全域 `~/.claude/CLAUDE.md` 的 `Personal Knowledge Base` 區段 | | |
+| | 📥 吸收文章並自動傳播反向連結 | `@obsidian-ingest` | `frontmatter-schema.md` |
 | | 📝 新增 Zettelkasten 知識卡片 | `@obsidian-add-cards` | `frontmatter-schema.md` |
 | | 📓 輕量隨記（靈感、備忘、踩坑） | `@obsidian-add-devlog` | `frontmatter-schema.md` |
 | | 📋 新增專案 Session 紀錄 | `@obsidian-add-projects-session` | `frontmatter-schema.md` |
@@ -84,6 +85,8 @@ Skills 採用「延遲載入」設計以節省成本。
 | | ✏️ 為筆記補上結論 / 解法 | `@obsidian-add-conclusion` | `frontmatter-schema.md` |
 | | 🧹 補齊 Frontmatter 欄位 | `@obsidian-enrich-frontmatter` | `frontmatter-schema.md` |
 | | 📦 搬移已完成的 Inbox 筆記 | `@obsidian-move-inbox` | - |
+| | 🏥 Vault 健康檢查（孤立筆記 / 懸案 / 潛在連結） | `@obsidian-health-check` | - |
+| | 🧠 從多篇筆記萃取概念節點 | `@obsidian-synthesize-concept` | `frontmatter-schema.md` |
 
 ---
 
