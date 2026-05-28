@@ -12,7 +12,7 @@ argument-hint: "[project-name] [task-description]"
 
 > 路徑變數定義於全域 `~/.claude/CLAUDE.md` 的 `Personal Knowledge Base` 區段。
 
-- **Session Template**: `{Templates}/Session Template.md`
+- **Session Template**: `{SkillTemplates}/Session Template.md`
 - **專案根目錄**: `{Projects}`
 - **今日日期**: 使用 `date +%Y%m%d` 取得（檔名用，格式 YYYYMMDD）
 
@@ -54,7 +54,7 @@ argument-hint: "[project-name] [task-description]"
 - `tags`: 從 task-description 推斷，無則 `[]`
 - `keywords`: 從 task-description 推斷，無則 `[]`
 - `aliases`: `[]`
-- `status`: `active`
+- `status`: `draft`
 - `resolution`: `null`
 - `maturity`: `null`
 - `updated`: 當下時間

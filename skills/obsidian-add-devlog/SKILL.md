@@ -54,7 +54,7 @@ date +"%Y-%m-%dT%H:%M"  # updated / completed
 
 ### Step 6：建立筆記
 
-讀取 `DevLog Template.md`，填入所有欄位後使用 Write 工具建立。
+讀取 `{SkillTemplates}/DevLog Template.md`，填入所有欄位後使用 Write 工具建立。
 
 Frontmatter 填入規則（依照 canonical schema 欄位順序）：
 - `id`: 當前時間戳

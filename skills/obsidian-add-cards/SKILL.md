@@ -12,7 +12,7 @@ argument-hint: "[url, text, or question]"
 
 > 路徑變數定義於全域 `~/.claude/CLAUDE.md` 的 `Personal Knowledge Base` 區段。
 
-- **Card Template**: `{Templates}/Zettelkasten Card Template.md`
+- **Card Template**: `{SkillTemplates}/Zettelkasten Card Template.md`
 - **Inbox 目錄**: `{Inbox}`
 - **Resources 目錄**: `{Resources}`
 
@@ -211,3 +211,16 @@ date +"%Y%m%d%H%M%S"   # for id
 - 卡片標題（檔案名稱）
 - 完整儲存路徑（`0_inbox` 或 `2_Resources`）
 - 摘要說明填入的核心概念
+
+### Step 7：Ingest 提示（僅 URL / 文字流程）
+
+> 僅在 Step 2a 或 Step 2b 流程（非 Step 2c 問題流程）且 Step 2d **找到相關筆記**時執行。
+
+在完成通知後，追加一行提示：
+
+```
+💡 找到 {N} 篇相關舊筆記。是否要執行 obsidian-ingest，將 [[{新卡片名稱}]] 的連結反向寫入這些筆記？（輸入 y 繼續，或略過）
+```
+
+- 用戶回應 `y` / `yes` / `好` / `要` → 立即執行 `obsidian-ingest` 的 **Step 5（反向傳播）**，跳過重新建卡（卡片已存在），直接用已知的 `related_notes` 和新卡片檔名操作
+- 用戶略過或回應其他 → 結束，不做額外動作
