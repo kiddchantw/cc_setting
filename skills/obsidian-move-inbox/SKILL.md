@@ -139,6 +139,25 @@ obsidian version 2>/dev/null && echo "CLI_AVAILABLE" || echo "CLI_UNAVAILABLE"
 
 確認後，依序處理每篇可搬移的筆記。
 
+#### 禁止重複副本（對應 CLAUDE.md FATAL-005）
+
+inbox 搬移 = vault 內**同一時間只有一份檔案**。禁止以下錯誤流程：
+
+```
+❌ Write 新檔到目的地 → 把 inbox 原檔 mv 到 3_Archives/_inbox-moved/
+❌ 自行發明「inbox 搬移備份」目錄
+```
+
+**正確流程（擇一）：**
+
+| 情境 | 做法 |
+|------|------|
+| 只改位置、內容不動 | 單次 `mv` 或 `obsidian move`：`0_inbox/foo.md` → 目的地 |
+| 需改 frontmatter / 檔名 | 先 `mv` 到目的地（可含新檔名），再在**目的地原地**編輯 |
+| 已在目的地寫好整理版、inbox 還有原檔 | 確認內容已涵蓋後，**刪除 inbox 原檔**（勿歸檔到 `3_Archives` 當備份） |
+
+> `3_Archives/` 只用於結束專案、過時筆記等**真正歸檔**，不是 inbox 清空的垃圾桶。
+
 #### 執行前安全檢查（所有模式都要）
 
 1. **重名檢查**：目的地若已有同名檔案，停止該檔案搬移並回報衝突
@@ -199,6 +218,21 @@ obsidian move file="{filename}" to={Vault name}/1_Projects/{project}/{sub-projec
 #### 指定檔案強制搬移模式的目的地規則
 - 若用戶已提供完整目的地路徑（如 `1_Projects/claw/zeroclaw`），直接使用該路徑
 - 若用戶只說「搬到 project」，但未給完整路徑，才回退到「目的地查找規則」
+
+### Step 5.5：更新 Index
+
+依照 vault `CLAUDE.md` 的「筆記搬移後的 Index 更新規則」，對本批次搬移的筆記執行 index 更新：
+
+- **目的地為 `1_Projects/{p}/` 或 `4_side/{p}/`**：
+  呼叫 `obsidian-update-index` skill，對每個受影響的專案資料夾執行增量更新。
+  同一批次移入同一專案的多篇筆記，合併為一次呼叫（不重複呼叫同一資料夾）。
+
+- **目的地為 `2_Resources/`**：
+  讀取每篇筆記的 frontmatter（tags、keywords）與標題，在 `2_Resources/_Index.md` 最相關的 section 末尾插入：
+  `- [[檔名]] — 一句話摘要`
+  無法判斷 section 時加到 `## 其他`。
+
+- **目的地為 `3_Archives/`**：略過，不更新。
 
 ### Step 6：完成報告
 
