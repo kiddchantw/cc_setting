@@ -67,6 +67,8 @@ Skills 採用「延遲載入」設計以節省成本。
 | **開發流程** | 🆕 建立新的開發 Session | `@create-session` | `agent-scripts/` |
 | | 🧪 Red-Green-Refactor TDD 循環 | `@tdd-workflow` | `agents/laravel-expert.md` |
 | | 📝 測試規劃與設計 | `@test-planning` | - |
+| | 🏗️ Flutter 建立新功能模組 | `@flutter-new-feature` | - |
+| | 🧪 Flutter 產生測試骨架 | `@flutter-gen-test` | - |
 | **Git 管理** | 📋 整理變更並撰寫 Conventional Commits | `@git-organize-commits` | `agents/git-commit-tw.md` |
 | | 📝 從 Session 更新 CHANGELOG 並推進版本號 | `@update-changelog` | - |
 | **程式碼審查** | 🔒 Laravel 安全性審查 | `@laravel-security-review` | `agents/laravel-reviewer.md` |
@@ -75,6 +77,8 @@ Skills 採用「延遲載入」設計以節省成本。
 | | ⚡ Flutter 效能審查 | `@flutter-performance-review` | - |
 | **工具整合** | 🔄 Flutter OpenAPI Client 生成 | `@flutter-openapi-generator` | - |
 | | 📱 Flutter 平台整合 | `@flutter-platform-integration` | - |
+| | 🌐 Flutter 新增 l10n 多語系 key | `@flutter-add-l10n-key` | - |
+| | 📦 Flutter 依賴版本審查 | `@flutter-dep-audit` | - |
 | | ⚛️ React/Next.js 優化指南 | `@react-best-practices` | - |
 | **Obsidian 筆記庫** | Vault 路徑定義於全域 `~/.claude/CLAUDE.md` 的 `Personal Knowledge Base` 區段 | | |
 | | 📥 吸收文章並自動傳播反向連結 | `@obsidian-ingest` | `frontmatter-schema.md` |
