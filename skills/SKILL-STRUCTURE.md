@@ -117,20 +117,19 @@ touch .claude/skills/my-skill/SKILL.md
 
 ## 🔗 4. 整合模式 (Cookbook)
 
-### 常用模式 A：執行自動化腳本
+### 常用模式 A：純指令式自動化
 ```markdown
-1. **執行腳本**
-   \```bash
-   bash ../../agent-scripts/my-automation.sh
-   \```
+1. **由 AI 直接執行步驟**（偵測目錄 → 產生檔名 → 套用內嵌模板）
+   - 優先採純指令式，避免依賴外部 shell 腳本（不易跨機/跨 CWD，且容易失聯）
+   - 確實需要確定性自動化（CI/cron）時才用 bash，並把腳本與 skill 放在同一 repo 內
 ```
 
 ### 常用模式 B：引導式填寫模板
 ```markdown
-1. **讀取模板**
-   - 位置: `../../agent-scripts/templates/target.md`
+1. **使用內嵌模板**
+   - 直接把模板寫在 SKILL.md 內（self-contained），不依賴外部模板檔
 2. **填寫內容**
-   - 參考專家規範: `../../.claude/agents/laravel-expert.md`
+   - 參考專家規範: `../../agents/laravel-expert.md`
 ```
 
 ### 常用模式 C：連動其他 Skill
@@ -142,5 +141,5 @@ touch .claude/skills/my-skill/SKILL.md
 
 - **✅ 單一職責 (Single Responsibility)**: 一個 Skill 只解決一個痛點，避免過於臃腫。
 - **✅ 延遲載入 (Lazy Loading)**: 將非核心的說明、範例移至 `README_zh_TW.md`，節省 60-80% Token。
-- **✅ 相對路徑**: 始終使用 `../../` 引用 `agent-scripts` 或 `agents` 等共享資源。
+- **✅ 自包含優先**: 模板、步驟盡量內嵌於 SKILL.md；需引用共享規範時用 `../../agents/` 指向 expert/conventions，避免依賴外部 shell 腳本。
 - **✅ 主動引導**: 在指令結尾要求 AI 提供具體的「下一步建議」或「檢查結果回報」。

@@ -1,5 +1,17 @@
 ## 📝 版本歷史
 
+- **2026-06-14**: Skill 搬移與重組
+  - **新增**: `obsidian-relocate` — 搬移筆記到指定路徑，自動偵測知識/行動並存時提示 split-note
+  - **新增**: `obsidian-relocate-resources` — 搬移筆記到 2_Resources，自動補齊 zettelkasten frontmatter
+  - **新增**: `obsidian-sync` — 將對話成果同步回 vault（從 global 遷入 vault SSOT）
+  - **改名**: `obsidian-add-conclusion` → `obsidian-conclusion`
+  - **移除**: `obsidian-move-inbox`（由 `obsidian-relocate` 和 `obsidian-relocate-resources` 取代）
+  - 修正 global `~/.claude/skills/` 全部改為 vault symlink，obsidian-sync 實體目錄移除
+
+- **2026-06-12**: `obsidian-add-projects-session` 建立位置改為 inbox-first
+  - Session 一律先建立在 `{Inbox}`（`0_inbox/`），歸檔交給 `obsidian-relocate`，不再直接寫入 `{Projects}/{project-name}/`
+  - Step 2 專案目錄確認改為不阻斷：同時認得 `{Projects}` 與 `{Side}`（side project 如 `beer`），找不到時改為向用戶確認而非停止
+
 - **2026-03-26**: 新增 Obsidian index 管理體系
   - **新增 skill**: `obsidian-update-index`
     - 支援增量更新（只補入 index 未列出的新筆記）與完整重建（`--rebuild`）兩種模式

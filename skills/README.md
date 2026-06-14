@@ -64,12 +64,12 @@ Skills 採用「延遲載入」設計以節省成本。
 
 | 類別 | 用途 | Skill 呼叫方法 | 資源參照 |
 | :--- | :--- | :--- | :--- |
-| **開發流程** | 🆕 建立新的開發 Session | `@create-session` | `agent-scripts/` |
+| **開發流程** | 🆕 建立新的開發 Session | `@create-session` | （自包含） |
 | | 🧪 Red-Green-Refactor TDD 循環 | `@tdd-workflow` | `agents/laravel-expert.md` |
 | | 📝 測試規劃與設計 | `@test-planning` | - |
 | | 🏗️ Flutter 建立新功能模組 | `@flutter-new-feature` | - |
 | | 🧪 Flutter 產生測試骨架 | `@flutter-gen-test` | - |
-| **Git 管理** | 📋 整理變更並撰寫 Conventional Commits | `@git-organize-commits` | `agents/git-commit-tw.md` |
+| **Git 管理** | 📋 整理變更並撰寫 Conventional Commits | `@git-organize-commits` | - |
 | | 📝 從 Session 更新 CHANGELOG 並推進版本號 | `@update-changelog` | - |
 | **程式碼審查** | 🔒 Laravel 安全性審查 | `@laravel-security-review` | `agents/laravel-reviewer.md` |
 | | ⚡ Laravel 效能審查 | `@laravel-performance-review` | `agents/laravel-reviewer.md` |
@@ -86,9 +86,11 @@ Skills 採用「延遲載入」設計以節省成本。
 | | 📓 輕量隨記（靈感、備忘、踩坑） | `@obsidian-add-devlog` | `frontmatter-schema.md` |
 | | 📋 新增專案 Session 紀錄 | `@obsidian-add-projects-session` | `frontmatter-schema.md` |
 | | 🔎 從筆記庫搜尋過往紀錄 | `@obsidian-dev-lookup` | - |
-| | ✏️ 為筆記補上結論 / 解法 | `@obsidian-add-conclusion` | `frontmatter-schema.md` |
+| | ✏️ 為筆記補上結論 / 解法 | `@obsidian-conclusion` | `frontmatter-schema.md` |
 | | 🧹 補齊 Frontmatter 欄位 | `@obsidian-enrich-frontmatter` | `frontmatter-schema.md` |
-| | 📦 搬移已完成的 Inbox 筆記 | `@obsidian-move-inbox` | - |
+| | 📦 搬移筆記到指定路徑 | `@obsidian-relocate` | - |
+| | 📦 搬移筆記到 2_Resources | `@obsidian-relocate-resources` | `frontmatter-schema.md` |
+| | 🔄 將對話成果同步回 vault | `@obsidian-sync` | - |
 | | 🏥 Vault 健康檢查（孤立筆記 / 懸案 / 潛在連結） | `@obsidian-health-check` | - |
 | | 🧠 從多篇筆記萃取概念節點 | `@obsidian-synthesize-concept` | `frontmatter-schema.md` |
 
@@ -109,4 +111,4 @@ Skills 採用「延遲載入」設計以節省成本。
 建立新 Skill 時，請務必遵循 [SKILL-STRUCTURE.md](SKILL-STRUCTURE.md) 規範：
 1. **單一職責**: 一個 Skill 只解決一個特定問題。
 2. **延遲載入**: 詳細說明與範例應與核心 `SKILL.md` 分離至 `README_zh_TW.md`。
-3. **相對路徑**: 優先引用 `../../agent-scripts/` 中的共享資源。
+3. **自包含優先**: 模板與步驟盡量內嵌於 `SKILL.md`；需共享規範時用 `../../agents/` 引用 expert/conventions，避免依賴外部 shell 腳本。
