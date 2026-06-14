@@ -1,58 +1,58 @@
 ---
 name: create-session
-description: 建立新的開發 Session，使用共享腳本、模板與專家規範
+description: 建立新的開發 Session（純指令式，自包含模板＋專家規範）
 ---
 
 # 建立開發 Session
 
 ## 概述
 
-此 skill 透過共享腳本與模板，自動化建立開發 session 的流程。
+在「程式碼開發專案」中建立一份開發 session 文件，記錄需求、流程與技術決策。
+此 skill 為**純指令式**：不依賴任何外部 shell 腳本，由 AI 直接偵測目錄、產生檔名並套用下方內嵌模板。
+
+> [!note]
+> **適用範圍**：本 skill 用於**開發專案**（Laravel / Flutter 等程式碼 repo）的 `docs/sessions/`。
+> 若是要在 Obsidian vault 的 `1_Projects/` 建立專案 session 筆記，請改用 `obsidian-add-projects-session` skill。
 
 ## 工作流程
 
-### 1. 執行建立腳本
+### 1. 決定 Session 檔案位置與檔名
 
-```bash
-bash ../../agent-scripts/create-session.sh
-```
+**偵測目錄**（依序）：
+1. 當前目錄若有 `sessions/` → 用它
+2. 否則找 `docs/sessions/`（不存在則建立）
+3. 在其下以年月分組：`docs/sessions/YYYY-MM/`
 
-**腳本功能**：
-- 自動產生 session 檔案（格式：`YYYYMMDD_HHMM_<description>.md`）
-- 使用 `../../agent-scripts/templates/session.md` 模板
-- 儲存至 `docs/sessions/YYYY-MM/` 目錄
+**檔名格式**：`YYYYMMDD_HHMM_<kebab-description>.md`
+（例：`20260614_0930_account-deletion-api.md`）
 
-### 2. 填寫 Session 內容
+### 2. 套用內嵌模板
+
+依下方模板建立檔案內容。
 
 **⚠️ 重要規則 (Critical Rules)**：
-1. **語言**: 內文必須使用 **繁體中文 (Traditional Chinese)** 撰寫。
-2. **標題**: 
-   - Level 1-2 (`#`, `##`) 保持模板的英文。
-   - Level 3+ (`###`) 推薦使用 **中英對照** (例如: `### Approach Analysis (方案分析)`)。
-3. **格式**: 必須保留模板中的 Metadata 區塊。
+1. **語言**：內文必須使用 **繁體中文**。
+2. **標題**：Level 1-2 (`#`, `##`) 保持英文；Level 3+ (`###`) 推薦中英對照（例：`### Approach Analysis (方案分析)`）。
+3. **格式**：必須保留 Metadata 區塊。
 
-使用模板填寫以下區塊：
-
-#### Metadata
-```yaml
+```markdown
 ---
 Session: YYYYMMDD_HHMM
 Title: [功能名稱]
 Status: active | archived
 Tags: [feature/xxx, screen/XXXScreen]
 ---
-```
 
-#### User Story
-```markdown
+# [功能名稱]
+
 ## User Story
 
 **As a** [角色]
 **I want** [需求]
 **So that** [目的]
-```
 
-#### User Flow (Mermaid)
+## User Flow
+
 ```mermaid
 graph TD
     A[開始] --> B[步驟1]
@@ -60,19 +60,6 @@ graph TD
     C --> D[結束]
 ```
 
-### 3. 遵循專案規範
-
-參考以下專家文檔：
-
-- **Laravel 專案**: `../../agents/laravel-expert.md`
-- **Flutter 專案**: `../../agents/flutter-expert.md`
-- **Git Commit**: `../../agents/git-commit-tw.md`
-
-### 4. 技術決策記錄
-
-在 session 中記錄：
-
-```markdown
 ## Technical Decisions
 
 ### Decision 1: [標題]
@@ -82,35 +69,33 @@ graph TD
   - Option B: 優點 / 缺點
 - **Decision**: 選擇 Option A
 - **Rationale**: 原因說明
+
+## Progress
+
+- [ ] ...
 ```
 
-## 相關資源
+### 3. 遵循專案規範（按需深讀）
 
-### 共享腳本 (Scripts)
-- `../../agent-scripts/create-session.sh` - 建立 session
-- `../../agent-scripts/archive-session.sh` - 封存 session
-- `../../agent-scripts/update-changelog.sh` - 更新 changelog
+開始填寫技術決策與後續開發時，依專案類型參考對應的專家規範文件
+（精簡規範在 expert，完整規範與程式碼範例在 conventions，依需要深讀）：
 
-### 模板 (Templates)
-- `../../agent-scripts/templates/session.md` - Session 模板
-- `../../agent-scripts/templates/spec.md` - Spec 模板
-
-### 專家規範 (Expert Docs)
-- `../../agents/laravel-expert.md` - Laravel 開發規範
-- `../../agents/flutter-expert.md` - Flutter 開發規範
-- `../../agents/git-commit-tw.md` - Git Commit 規範
+- **Laravel 專案**：`../../agents/laravel-expert.md` → `../../agents/laravel-conventions.md`
+- **Flutter 專案**：`../../agents/flutter-expert.md` → `../../agents/flutter-conventions.md`
 
 ## 完成檢查清單
 
-- [ ] Session 檔案已建立
+- [ ] Session 檔案已建立（路徑 + 檔名格式正確）
+- [ ] Metadata 區塊完整
 - [ ] User Story 已填寫
 - [ ] User Flow 已繪製（Mermaid）
 - [ ] Technical Decisions 已記錄
 - [ ] Tags 已標記（feature/screen）
-- [ ] 遵循專案規範（參考專門專家文檔）
+- [ ] 已參考對應專案的專家規範
 
 ## 下一步
 
-1. 開始開發（使用 `@tdd-workflow` skill）
-2. 定期更新 session 進度
-3. 完成後執行 `bash ../../agent-scripts/archive-session.sh`
+1. 開始開發（可搭配 `@tdd-workflow` skill）
+2. 定期更新 session 的 Progress 區塊
+3. 完成後將 Metadata 的 `Status` 改為 `archived`
+4. 視需要執行 `@update-changelog` skill 更新 CHANGELOG
