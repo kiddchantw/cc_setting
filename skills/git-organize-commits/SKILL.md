@@ -7,9 +7,22 @@ description: Organize multiple unrelated file changes in git working directory i
 
 將工作目錄中的多個不相關變更，整理成獨立且邏輯清晰的 commits。
 
+## 路徑參數
+
+若呼叫時有傳入路徑（例如 `/git-organize-commits /path/to/repo`），**所有 git 指令必須在該路徑下執行**：
+
+```bash
+cd /path/to/repo && git status
+cd /path/to/repo && git diff
+cd /path/to/repo && git add <files>
+cd /path/to/repo && git commit -m "..."
+```
+
+未傳入路徑時，使用當前工作目錄。
+
 ## 工作流程
 
-1. **分析變更**：使用 `git status` 和 `git diff` 分析所有變更
+1. **確認工作目錄**：有路徑參數則切換至該路徑，再執行 `git status` 和 `git diff` 分析所有變更
 2. **識別群組**：根據 **目錄相依性 (Directory Affinity)** 和內容識別邏輯群組
     - 優先將 **同一資料夾內** 的新增與修改視為同一組變更
     - 檢查是否有漏掉同目錄下的 Untracked files (`git add` 新增的檔案)
