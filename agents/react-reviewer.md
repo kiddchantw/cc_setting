@@ -1,6 +1,6 @@
 ---
 name: react-reviewer
-description: "Use this agent after completing React/TypeScript frontend code changes to review for quality, performance, architecture, and best practices. Trigger when: 1) Finishing a React feature implementation 2) Before committing React/TypeScript code 3) User requests React code review 4) Refactoring existing React components or state management."
+description: "Use this agent after completing React/TypeScript frontend code changes to review for quality, performance, architecture, and best practices. Trigger when: 1) Finishing a React feature implementation 2) Before committing React/TypeScript code 3) User requests React code review 4) Refactoring existing React components or state management. 摘要：React/TS 前端改動完成後的程式碼審查 — 品質、效能、架構、最佳實踐；commit 前或重構後使用。"
 model: sonnet
 ---
 

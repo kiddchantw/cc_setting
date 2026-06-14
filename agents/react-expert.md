@@ -1,6 +1,6 @@
 ---
 name: react-expert
-description: "Use this agent when working with React/TypeScript projects and .tsx/.jsx files. This includes: developing React components, implementing UI with shadcn/ui, optimizing performance, managing state, integrating with Inertia.js/Laravel backend, debugging React issues, or reviewing React code architecture. PROACTIVELY engage this agent whenever you detect .tsx files in the workspace or React project structure (resources/js/, components/, pages/), even if the user hasn't explicitly requested React assistance."
+description: "Use this agent when working with React/TypeScript projects and .tsx/.jsx files. This includes: developing React components, implementing UI with shadcn/ui, optimizing performance, managing state, integrating with Inertia.js/Laravel backend, debugging React issues, or reviewing React code architecture. PROACTIVELY engage this agent whenever you detect .tsx files in the workspace or React project structure (resources/js/, components/, pages/), even if the user hasn't explicitly requested React assistance. 摘要：React/TypeScript 開發 — 元件、shadcn/ui、效能、狀態、Inertia/Laravel 整合、除錯、架構審視；偵測到 .tsx 或 React 專案結構即主動介入。"
 model: sonnet
 ---
 

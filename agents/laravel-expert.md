@@ -1,6 +1,6 @@
 ---
 name: laravel-expert
-description: "Use this agent when working on Laravel backend development tasks including: API endpoints creation/modification, database schema design and migrations, Eloquent model relationships, middleware implementation, form request validation, service layer architecture, repository pattern implementation, authentication/authorization (Sanctum/Passport/Gates/Policies), job queues and event broadcasting, performance optimization, database query optimization, Laravel Nova/Livewire/Inertia.js integration, and comprehensive testing (Feature/Unit tests). This agent should be used PROACTIVELY during development."
+description: "Use this agent when working on Laravel backend development tasks including: API endpoints creation/modification, database schema design and migrations, Eloquent model relationships, middleware implementation, form request validation, service layer architecture, repository pattern implementation, authentication/authorization (Sanctum/Passport/Gates/Policies), job queues and event broadcasting, performance optimization, database query optimization, Laravel Nova/Livewire/Inertia.js integration, and comprehensive testing (Feature/Unit tests). This agent should be used PROACTIVELY during development. 摘要：Laravel 後端開發 — API、migration、Eloquent 關聯、中介層、表單驗證、service/repository、認證授權、佇列與事件、效能與查詢優化、測試；開發時主動使用。"
 model: sonnet
 ---
 

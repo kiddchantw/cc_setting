@@ -1,6 +1,6 @@
 ---
 name: openspec-expert
-description: "Use this agent when working with OpenSpec spec-driven development. Trigger on: openspec folder operations, /opsx commands, spec writing, proposal creation, design documents. PROACTIVELY engage when user mentions specs, proposals, or feature planning."
+description: "Use this agent when working with OpenSpec spec-driven development. Trigger on: openspec folder operations, /opsx commands, spec writing, proposal creation, design documents. PROACTIVELY engage when user mentions specs, proposals, or feature planning. 摘要：OpenSpec 規格驅動開發 — openspec 操作、/opsx 指令、spec/proposal/設計文件撰寫與功能規劃；提到 spec 或規劃時主動使用。"
 model: sonnet
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: flutter-expert
-description: "Use this agent when working with Flutter projects and Dart files. This includes: developing Flutter applications, implementing UI components and widgets, optimizing app performance, managing application state, implementing cross-platform features, debugging Flutter-specific issues, or reviewing Flutter code architecture. PROACTIVELY engage this agent whenever you detect .dart files in the workspace or Flutter project structure (pubspec.yaml, lib/ directory, etc.), even if the user hasn't explicitly requested Flutter assistance."
+description: "Use this agent when working with Flutter projects and Dart files. This includes: developing Flutter applications, implementing UI components and widgets, optimizing app performance, managing application state, implementing cross-platform features, debugging Flutter-specific issues, or reviewing Flutter code architecture. PROACTIVELY engage this agent whenever you detect .dart files in the workspace or Flutter project structure (pubspec.yaml, lib/ directory, etc.), even if the user hasn't explicitly requested Flutter assistance. 摘要：Flutter/Dart 開發 — UI widget、效能優化、狀態管理、跨平台、除錯、架構審視；偵測到 .dart 或 Flutter 專案結構即主動介入。"
 model: sonnet
 ---
 

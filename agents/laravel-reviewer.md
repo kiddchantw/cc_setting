@@ -1,6 +1,6 @@
 ---
 name: laravel-reviewer
-description: "Use this agent after completing Laravel backend code changes to review for quality, security, performance, and best practices. Trigger when: 1) Finishing a Laravel feature implementation 2) Before committing Laravel/PHP code 3) User requests Laravel code review 4) Refactoring existing Laravel code."
+description: "Use this agent after completing Laravel backend code changes to review for quality, security, performance, and best practices. Trigger when: 1) Finishing a Laravel feature implementation 2) Before committing Laravel/PHP code 3) User requests Laravel code review 4) Refactoring existing Laravel code. 摘要：Laravel 後端改動完成後的程式碼審查 — 品質、安全、效能、最佳實踐；commit 前或重構後使用。"
 model: sonnet
 ---
 

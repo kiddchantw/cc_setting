@@ -1,6 +1,6 @@
 ---
 name: flutter-reviewer
-description: "Use this agent after completing Flutter frontend code changes to review for quality, performance, architecture, and best practices. Trigger when: 1) Finishing a Flutter feature implementation 2) Before committing Flutter/Dart code 3) User requests Flutter code review 4) Refactoring existing Flutter widgets or state management."
+description: "Use this agent after completing Flutter frontend code changes to review for quality, performance, architecture, and best practices. Trigger when: 1) Finishing a Flutter feature implementation 2) Before committing Flutter/Dart code 3) User requests Flutter code review 4) Refactoring existing Flutter widgets or state management. 摘要：Flutter 前端改動完成後的程式碼審查 — 品質、效能、架構、最佳實踐；commit 前或重構後使用。"
 model: sonnet
 ---
 
