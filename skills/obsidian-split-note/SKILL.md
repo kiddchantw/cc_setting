@@ -26,7 +26,7 @@ argument-hint: "[筆記路徑或檔名]"
 ```
 筆記同時有「可複用知識」和「未完成行動」？
 ├─ 是 → 用本 skill 拆分
-├─ 只有知識（無待辦）→ 用 obsidian-move-inbox 搬 2_Resources 即可
+├─ 只有知識（無待辦）→ 用 obsidian-relocate-resources 搬 2_Resources 即可
 ├─ 只有行動（無複用價值）→ 補 frontmatter 成 session / devlog 即可
 └─ 行動全部已完成 → 知識搬 2_Resources，行動段落保留為紀錄，不開 session
 ```

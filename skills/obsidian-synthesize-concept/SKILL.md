@@ -238,6 +238,6 @@ find "{Resources}" -name "{概念節點名稱}.md"
 
 - 概念節點**永遠存到 `2_Resources/`**，不進 inbox（它是已加工的知識，不需要再過濾）
 - 不合併來源筆記的全文，只萃取**可複用的原則/模式/比較**
-- 來源筆記**保持原位不移動**（搬移是 `obsidian-move-inbox` 的工作）
+- 來源筆記**保持原位不移動**（搬移是 `obsidian-relocate` 或 `obsidian-relocate-resources` 的工作）
 - 若來源筆記的 `maturity` 是 `seed`，合成後不自動升級它——留給用戶手動決定
 - 若用戶只提供 1 篇筆記：提醒「概念節點通常需要 2+ 篇來源才有合成價值，你確定要繼續嗎？」

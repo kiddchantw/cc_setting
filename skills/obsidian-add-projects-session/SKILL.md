@@ -13,7 +13,8 @@ argument-hint: "[project-name] [task-description]"
 > 路徑變數定義於全域 `~/.claude/CLAUDE.md` 的 `Personal Knowledge Base` 區段。
 
 - **Session Template**: `{SkillTemplates}/Session Template.md`
-- **專案根目錄**: `{Projects}`
+- **建立位置**: `{Inbox}`（所有新 session 一律先進 inbox，歸檔交給 `obsidian-relocate`）
+- **專案根目錄**: `{Projects}` 與 `{Side}`（僅用於確認 project-name 與讀取專案脈絡）
 - **今日日期**: 使用 `date +%Y%m%d` 取得（檔名用，格式 YYYYMMDD）
 
 ## 執行步驟
@@ -25,9 +26,12 @@ argument-hint: "[project-name] [task-description]"
 - **task-description**: 第一個詞之後的所有內容（例如 `建立 model A 的 CRUD`）；若無則為空
 - **今日日期**: 立即執行 `date +%Y%m%d` 取得，後續步驟直接使用此值
 
-### Step 2：確認專案目錄
+### Step 2：確認專案名稱
 
-確認 `{專案根目錄}/{project-name}/` 目錄存在。若不存在，告知用戶並停止。
+確認 `{Projects}/{project-name}/` 或 `{Side}/{project-name}/` 其中之一存在（side project 如 `beer` 位於 `{Side}`）。
+
+- 存在 → 繼續，frontmatter `project` 填此名稱
+- 都不存在 → 向用戶確認 project-name 是否正確，再決定是否繼續（**不直接停止**，session 反正建在 inbox，歸檔時才需要正確的專案目錄）
 
 ### Step 3：決定檔名
 
@@ -70,7 +74,9 @@ argument-hint: "[project-name] [task-description]"
 
 **其他 section** 保留 template 原始 comment 不變。
 
-在 `{專案根目錄}/{project-name}/` 建立檔案 `{YYYYMMDD}_{slug}.md`。
+在 `{Inbox}` 建立檔案 `{YYYYMMDD}_{slug}.md`（**不要直接放進專案資料夾**，後續由 `obsidian-relocate` 歸檔）。
+
+建立前先檢查 `{Inbox}` 是否已有同名檔案，有則加數字後綴。
 
 建立完成後，告知用戶檔案已建立（顯示完整路徑）。
 
@@ -82,7 +88,7 @@ argument-hint: "[project-name] [task-description]"
 2. **`## ✅ 決定`**：說明選定的實作方案與架構決策
 3. **`## 📋 實作進度`**：將任務拆分為具體可執行的 checklist，每項以 `- [ ]` 開頭
 
-規劃時遵循專案既有的技術棧和慣例。若需要了解專案結構，可先讀取 `{專案根目錄}/{project-name}/` 下的相關檔案。
+規劃時遵循專案既有的技術棧和慣例。若需要了解專案脈絡，可先讀取 `{Projects}/{project-name}/` 或 `{Side}/{project-name}/` 下的相關檔案（含 `_index_{project-name}.md`）。
 
 ### Step 6：完成提示
 

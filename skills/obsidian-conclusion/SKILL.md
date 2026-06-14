@@ -1,5 +1,5 @@
 ---
-name: obsidian-add-conclusion
+name: obsidian-conclusion
 description: 為筆記補上「結論 / 解法」區塊。支援三種模式：(1) 從當前對話提取問題＋解法寫入指定筆記、(2) 讀取既有筆記內容自動產生結論、(3) 整批掃描 inbox 補結論。當用戶說「補結論」、「add conclusion」、「加解法」時使用。
 argument-hint: "[檔案名稱]（可選，不指定則掃描整個 inbox）"
 ---
